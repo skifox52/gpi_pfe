@@ -1,0 +1,82 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "myDB",
+      "username": "admin",
+      "database": "gpi_pfe",
+      "password": "skifox123"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "myDB",
+      "database": "gpi_pfe",
+      "username": "admin",
+      "password": "skifox123"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "gpi_pfe",
+      "database": "gpi_pfe",
+      "username": "admin",
+      "password": "skifox123"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "gpi_pfe",
+      "database": "gpi_pfe",
+      "username": "admin",
+      "password": "skifox123"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "gpi_pfe",
+      "database": "gpi_pfe",
+      "username": "admin",
+      "password": "skifox123"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "myProject",
+      "database": "gpi_pfe",
+      "username": "admin",
+      "password": "skifox123"
+    }
+  ]
+}

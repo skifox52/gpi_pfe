@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.login-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#0d585f, #0d2d32);
+  position: relative;
+  .title {
+    position: absolute;
+    top: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 200;
+    line-height: 1;
+    color: rgba(240, 240, 240, 0.85);
+  }
+  .logo {
+    position: absolute;
+    opacity: 0.3;
+  }
+}
+
+.login-page form {
+  background: rgba(14, 29, 37, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: max-content;
+  height: max-content;
+  padding: 2.5rem 2rem;
+  gap: 1.6em;
+  border-radius: 25px;
+  box-shadow: 3px 5px 10px hsl(201, 45%, 5%),
+    inset -2px -2px 7px rgba(240, 240, 240, 0.1);
+  z-index: 100;
+}
+.login-page form input {
+  font-size: 1.2em;
+  padding: 0.5em 0.3em;
+  outline: none;
+  border: 0.2px solid rgba(64, 137, 153, 0.3);
+  color: hsl(0, 0%, 95%);
+  letter-spacing: 1px;
+  background: transparent;
+  width: 15em;
+  border-radius: 5px;
+}
+.login-page form h1 {
+  color: hsl(0, 0%, 90%);
+  padding-bottom: 1.5em;
+  letter-spacing: 1px;
+  font-weight: 100;
+}
+::placeholder {
+  color: hsl(0, 0%, 67%);
+}
+.login-page form button {
+  padding: 0.5em 0.3em;
+  border: none;
+  font-size: 1.2em;
+  width: 15em;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 90%);
+  color: #203354;
+  border: 1px solid #0d585f;
+  transition: all 350ms cubic-bezier(0.42, 0, 0.37, 1.98);
+}
+.login-page form button:hover {
+  border: 1px solid hsl(0, 0%, 90%);
+  background: #0d585f;
+  color: hsl(0, 0%, 90%);
+}

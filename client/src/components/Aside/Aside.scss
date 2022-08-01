@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$font-primary: hsl(185, 62%, 82%);
+$font-secondary: hsl(185, 62%, 82%);
+$background-primary: #0e323c;
+
+.aside {
+  color: $font-primary;
+  background: $background-primary;
+  width: 20vw;
+  margin-block: auto;
+  position: fixed;
+  height: calc(100% - 2.5rem);
+  top: 2.5rem;
+  left: 0;
+  bottom: 0px;
+  border: 1px solid #0e1d25;
+  ul {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    li {
+      list-style: none;
+      width: 100%;
+      height: 100%;
+      transition: all 150ms ease-in;
+      padding-left: 0.55rem;
+      border: 1px solid #0e1d25;
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding: 1em 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      &:hover {
+        cursor: pointer;
+        color: #f0f0f0;
+        background: hsl(185, 76%, 31%);
+      }
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .aside {
+    font-size: 0.9rem;
+    ul > li {
+      padding-left: 0.85rem;
+      a {
+        gap: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  .aside {
+    font-size: 0.8rem;
+    ul > li {
+      padding-left: 0.75rem;
+      a {
+        gap: 0.8rem;
+      }
+    }
+  }
+}
+@media (max-width: 850px) {
+  .aside {
+    font-size: 0.7rem;
+    ul > li {
+      padding-left: 0.3rem;
+      a {
+        gap: 0.6rem;
+      }
+    }
+  }
+}
+@media (max-width: 620px) {
+  .aside {
+    font-size: 0.65rem;
+    width: 25vw;
+    ul > li {
+      padding-left: 0.2rem;
+      a {
+        gap: 0.4rem;
+      }
+    }
+  }
+}
+@media (max-width: 480px) {
+  .aside {
+    font-size: 0.6rem;
+    width: 25vw;
+    ul > li > a {
+      padding-left: 0.1rem;
+      gap: 0.3rem;
+    }
+  }
+}
+@media (max-width: 300px) {
+  .aside {
+    font-size: 0.5rem;
+    width: 30vw;
+    ul > li > a {
+      padding-block: 0;
+      gap: 0.2rem;
+    }
+  }
+}
+
+@media (max-height: 650px) {
+  .aside {
+    font-size: 0.7rem;
+  }
+}
+@media (max-height: 465px) {
+  .aside {
+    font-size: 0.41rem;
+  }
+}
+@media (max-height: 300px) {
+  .aside {
+    font-size: 0.25rem;
+  }
+}
+@media (max-height: 200px) {
+  .aside {
+    font-size: 0.1rem;
+  }
+}

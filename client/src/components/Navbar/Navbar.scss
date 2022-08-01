@@ -1,0 +1,39 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background: #0e323c;
+  z-index: 999;
+  ul {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    li {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      .logo-svg {
+        height: 70%;
+        width: 100%;
+        transform: translateX(-50%);
+      }
+      .user-icon {
+        font-size: 1.2rem;
+        color: rgba(240, 240, 240, 0.9);
+        cursor: pointer;
+        transition: all 150ms ease-in-out;
+        &:hover {
+          font-size: 1.5rem;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

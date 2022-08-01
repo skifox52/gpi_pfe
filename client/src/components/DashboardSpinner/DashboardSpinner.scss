@@ -1,0 +1,68 @@
+.dashboard-spinner {
+  background: rgba(240, 240, 240, 0.92);
+  position: absolute;
+  inset: 0 0 0 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 100%;
+  box-shadow: -2px -4px 10px inset #333, 2px 4px 10px inset #333;
+  &::before {
+    content: "";
+    width: 4vw;
+    aspect-ratio: 1;
+    border: 0.2em solid #333;
+    position: absolute;
+    animation: rotateRight 1500ms infinite;
+  }
+  &::after {
+    content: "";
+    width: 4vw;
+    aspect-ratio: 1;
+    border: 0.15em solid #333;
+    transform: rotate(45deg);
+    position: absolute;
+    animation: rotateLeft 500ms infinite;
+  }
+}
+
+@keyframes rotateRight {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes rotateLeft {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@media (max-width: 620px) {
+  .dashboard-spinner {
+    inset: 0 0 0 25vw;
+    &::before,
+    &::after {
+      width: 8vw;
+    }
+  }
+}
+@media (max-width: 300px) {
+  .dashboard-spinner {
+    inset: 0 0 0 30vw;
+    &::before,
+    &::after {
+      width: 10vw;
+    }
+  }
+}
