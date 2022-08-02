@@ -16,19 +16,25 @@
     top: 0;
     bottom: 0;
     width: 0.6em;
-    background: rgb(26, 114, 121);
+    background: #c1faff;
   }
 
   p {
     width: 100%;
-    font-weight: 500;
+    font-weight: 400;
+    color: #c1faff;
+    letter-spacing: 1px;
+    margin-bottom: 0.3em;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
   span {
     width: 100%;
     display: inline-block;
-    color: rgba(240, 240, 240, 0.7);
+    color: #4b7d8c;
     font-size: 0.7em;
-    font-weight: 300;
+    font-weight: 400;
     text-align: start;
   }
 }

@@ -8,16 +8,20 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-button {
-  width: 10px;
-  background-color: #0d585f;
-  height: 10px;
+  width: 8px;
+  background-color: #befcff;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: hsl(185, 76%, 11%);
+  background-color: #072e31;
   border-radius: 100vw;
+}
+::-webkit-scrollbar-button {
+  display: none;
 }

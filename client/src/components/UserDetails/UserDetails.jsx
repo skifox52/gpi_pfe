@@ -24,10 +24,14 @@ function UserDetails() {
     }
   }, [])
   document.addEventListener("click", (e) => {
-    if (e.target.closest(".user-details")) {
+    if (
+      e.target.closest(".user-details") &&
+      !e.target.classList.contains(".user-details")
+    ) {
       document.querySelector("dialog").close()
     }
   })
+
   return (
     <dialog className="user-details">
       <span>Identifiant : </span>

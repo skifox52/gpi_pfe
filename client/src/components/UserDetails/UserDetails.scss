@@ -8,21 +8,21 @@
   padding: 2.5rem 2rem;
   width: 50ch;
   min-width: max-content;
-  border: none;
-  background: rgba(21, 76, 90, 0.85);
+  border: 2px solid #c1faff;
+  background: #154c5ad9;
   color: #f0f0f0;
   border-radius: 1em;
   box-shadow: 3px 5px 10px hsl(201, 45%, 5%),
     inset -2px -2px 7px rgba(240, 240, 240, 0.1);
   span {
-    color: rgba(240, 240, 240, 0.8);
+    color: #4b7d8c;
     font-size: 0.9em;
     letter-spacing: 2px;
-    font-weight: 200;
+    font-weight: 400;
     margin-block: 2.5ch;
   }
   p {
-    color: rgba(240, 240, 240, 0.95);
+    color: #c1faff;
     margin-bottom: 2ch;
     font-size: 1.08em;
     letter-spacing: 1px;
@@ -32,7 +32,7 @@
   }
   .close-btn {
     position: absolute;
-    color: inherit;
+    color: #c1faff;
     top: 0.5rem;
     right: 0.5rem;
     cursor: pointer;
