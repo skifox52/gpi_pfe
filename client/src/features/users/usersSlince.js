@@ -7,7 +7,13 @@ export const fetchUsers = createAsyncThunk(
   "users/getAllUsers",
   async (_, thunkApi) => {
     try {
-      const users = await axios.get("http://localhost:5000/users/all")
+      const token = thunkApi.getState().auth.user.token
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+      const users = await axios.get("http://localhost:5000/users/all", config)
       return users.data
     } catch (error) {
       const message =

@@ -2,10 +2,11 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const expressAsyncHandler = require("express-async-handler")
 const AuthModel = require("../Models/authModel")
+require("dotenv").config()
 
 //Generate token
 const genereateToken = (id) => {
-  return jwt.sign(id, "jkjflsdlmfsS")
+  return jwt.sign(id, process.env.JWT_SECRET)
 }
 
 //Register CONTROLLER
@@ -37,6 +38,7 @@ exports.registerController = expressAsyncHandler(async (req, res) => {
     newUser.save()
     const [userId, __] = await AuthModel.fetchUser(newUser.nom)
     res.status(201).json({
+      userId: userId[0].id_util,
       user: newUser.nom,
       token: genereateToken(userId[0].id_util),
     })
@@ -68,6 +70,7 @@ exports.loginController = expressAsyncHandler(async (req, res) => {
       throw new Error("Password doesn't match!")
     }
     res.status(200).json({
+      userId,
       nom_util: userName,
       token: genereateToken(userId),
     })
