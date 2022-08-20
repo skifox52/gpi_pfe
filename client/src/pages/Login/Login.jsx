@@ -29,11 +29,14 @@ function Login() {
     if (isError) {
       toast.error(message)
     }
-    if (isSuccess || user) {
+    if ((isSuccess || user) && user.role === "admin") {
       navigate("/dashboard")
     }
+    if ((isSuccess || user) && user.role === "utilisateur") {
+      navigate("/utilisateur")
+    }
     dispatch(reset())
-  }, [user, isSuccess, isError, message, dispatch])
+  }, [user, isSuccess, isError, message, dispatch, navigate])
 
   //onChange function
   const onChange = (e) => {

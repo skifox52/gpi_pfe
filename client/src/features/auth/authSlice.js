@@ -31,7 +31,7 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 
 //Logout
 export const logout = createAsyncThunk("auth/logout", async () => {
-  await localStorage.removeItem('User')
+  await localStorage.removeItem("User")
 })
 
 //Create SLICE

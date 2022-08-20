@@ -35,7 +35,7 @@ exports.registerController = expressAsyncHandler(async (req, res) => {
       telephM,
       teleph
     )
-    newUser.save()
+    await newUser.save()
     const [userId, __] = await AuthModel.fetchUser(newUser.nom)
     res.status(201).json({
       userId: userId[0].id_util,
@@ -65,6 +65,7 @@ exports.loginController = expressAsyncHandler(async (req, res) => {
     const userId = user[0].id_util
     const userName = user[0].nom_util
     const userPassword = user[0].mdp_util
+    const role = user[0].role
     const matchedPassword = await bcrypt.compare(password, userPassword)
     if (matchedPassword === false) {
       throw new Error("Password doesn't match!")
@@ -72,6 +73,7 @@ exports.loginController = expressAsyncHandler(async (req, res) => {
     res.status(200).json({
       userId,
       nom_util: userName,
+      role: role,
       token: genereateToken(userId),
     })
   } catch (error) {

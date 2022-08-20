@@ -8,7 +8,9 @@ import { toast } from "react-toastify"
 function UserDetails() {
   const [user, setUser] = useState()
   const user_name = useSelector((state) => state.auth.user)
-  const token = useSelector((state) => state.auth.user.token)
+  const token =
+    useSelector((state) => (state.auth.user ? state.auth.user.token : null)) ||
+    null
   useEffect(() => {
     const fetchSingleUser = async (name) => {
       try {
@@ -22,12 +24,18 @@ function UserDetails() {
         toast.error(error)
       }
     }
-    fetchSingleUser(user_name ? user_name.nom_util : "null")
+    if (token) {
+      fetchSingleUser(user_name ? user_name.nom_util : "null")
+    } else {
+      return () => {
+        setUser()
+      }
+    }
     return () => {
       setUser()
     }
-  }, [])
-
+  }, [token, user_name])
+  console.log(user)
   return (
     <dialog className="user-details">
       <article className="user-detais-card">

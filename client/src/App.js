@@ -15,6 +15,7 @@ import MaterielCategorie from "./pages/MaterielCategorie/MaterielCategorie"
 import Informaticien from "./pages/Informaticien/Informaticien"
 import Document from "./pages/Document/Document"
 import UserDb from "./pages/UserDb/UserDb"
+import UserHome from "./pages/UserHome/UserHome"
 
 function App() {
   const location = useLocation()
@@ -38,6 +39,7 @@ function App() {
           <Route path="document" element={<Document />} />
           <Route path="userdb" element={<UserDb />} />
         </Route>
+        <Route path="/utilisateur" element={<UserHome />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
