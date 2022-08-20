@@ -35,7 +35,6 @@ function UserDetails() {
       setUser()
     }
   }, [token, user_name])
-  console.log(user)
   return (
     <dialog className="user-details">
       <article className="user-detais-card">

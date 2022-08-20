@@ -1,0 +1,36 @@
+.request__form {
+  transform: translateX(-101%);
+  height: 100%;
+  width: 50%;
+  background: white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 150ms ease-in;
+  .form__control {
+    width: 15rem;
+    background-color: aqua;
+    margin-block: 1rem;
+    input,
+    select,
+    button {
+      font-size: 1.1rem;
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+  .close__btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: black;
+  }
+}
+
+.show {
+  height: 100%;
+  transform: translateX(0);
+}
