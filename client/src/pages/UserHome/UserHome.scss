@@ -58,6 +58,13 @@
 .full__width {
   transform: translateX(100%);
 }
+.full__width__view {
+  transform: translateX(-100%);
+}
+.no__width__view {
+  width: 0;
+  transform: translateX(-101%);
+}
 .no__width {
   width: 0;
   transform: translateX(101%);

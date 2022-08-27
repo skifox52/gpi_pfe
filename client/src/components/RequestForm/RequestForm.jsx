@@ -1,42 +1,93 @@
 import "./RequestForm.scss"
 import { IoMdClose } from "react-icons/io"
+import { useState, useEffect, useRef } from "react"
+import { toast } from "react-toastify"
+import { reset, fetchMateriel } from "../../features/materiel/materiel"
+import { postRequest } from "../../features/request/request"
+import { useSelector, useDispatch } from "react-redux"
 
-function RequestForm() {
+function RequestForm({ setFormModal, viewContainer, addContainer }) {
+  const formRef = useRef(null)
+  const submitBtn = useRef(null)
+  const dispatch = useDispatch()
+  const [formData, setFormData] = useState()
+  const { materiel, message, status } = useSelector((state) => state.materiel)
+  const request = useSelector((state) => state.request)
+
+  //UseEffect
+  useEffect(() => {
+    dispatch(fetchMateriel())
+    if (request.status === "error") toast.error(request.message)
+    if (status === "error") {
+      toast.error(message)
+    }
+    if (request.status === "pending") {
+      submitBtn.current.classList.add("loading__btn")
+    }
+    if (request.status === "success") {
+      submitBtn.current.classList.remove("loading__btn")
+      toast.success("Votre requète a été envoyer!")
+    }
+    return () => {
+      dispatch(reset())
+    }
+  }, [dispatch, formRef, submitBtn, request.status, request.message])
+  const onChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+  const onSubmit = (e) => {
+    e.preventDefault()
+    dispatch(postRequest(formData))
+  }
   return (
-    <div className="request__form">
-      <IoMdClose
-        className="close__btn"
-        onClick={(e) => {
-          document.querySelector(".add").classList.remove("full__width")
-          document.querySelector(".view").classList.remove("no__width")
-          document.querySelector(".request__form").classList.remove("show")
-        }}
-      />
-      <form>
+    <dialog open className="request__form" ref={formRef}>
+      <h1>Ajouter une requete</h1>
+      <IoMdClose className="close__btn" onClick={setFormModal} />
+      <form onSubmit={onSubmit}>
         <div className="form__control">
-          <select name="mat" id="mat">
-            <option value="" disabled selected hidden>
-              Selectionnez votre materiel
+          <select
+            name="id_mat"
+            id="mat"
+            required
+            onChange={onChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled hidden>
+              Selectionnez un materiel
             </option>
-            <option value="First">Value</option>
+            {materiel.map((mat) => (
+              <option value={mat.id_mat} key={mat.id_mat}>
+                {mat.nom_mat} - {mat.marque_mat}
+              </option>
+            ))}
           </select>
         </div>
         <div className="form__control">
-          <input type="text" name="type" placeholder="Type de quete..." />
+          <select
+            name="type_requete"
+            id="type"
+            required
+            onChange={onChange}
+            defaultValue="default"
+          >
+            <option value="default" disabled hidden>
+              Selectionnez le type
+            </option>
+            <option value="reparation">Réparation</option>
+            <option value="demande">Demande de materiel</option>
+          </select>
         </div>
         <div className="form__control">
-          <input type="text" name="titre" placeholder="Titre de quete..." />
-        </div>
-        <div className="form__control">
-          <input
-            type="text"
-            name="description"
-            placeholder="Description de quete..."
-          />
-        </div>
-        <div className="form__control">
-          <select name="urgence">
-            <option value="" hidden selected disabled>
+          <select
+            name="urgence"
+            required
+            onChange={onChange}
+            defaultValue="default"
+          >
+            <option value="default" hidden disabled>
               Urgence
             </option>
             <option value="haute">Haute</option>
@@ -44,10 +95,31 @@ function RequestForm() {
           </select>
         </div>
         <div className="form__control">
-          <button type="submit">Envoyer</button>
+          <input
+            type="text"
+            name="titre"
+            placeholder="Titre de quete..."
+            required
+            onChange={onChange}
+          />
+        </div>
+        <div className="form__control">
+          <input
+            type="text"
+            name="description"
+            placeholder="Description de quete..."
+            required
+            onChange={onChange}
+          />
+        </div>
+
+        <div className="form__control">
+          <button type="submit" className="submit__btn">
+            Envoyer
+          </button>
         </div>
       </form>
-    </div>
+    </dialog>
   )
 }
 

@@ -1,23 +1,56 @@
+$primary--clr: #0e323c;
+$secondary--clr: #0d585f;
+$font--color: #c2f9ff;
+
 .request__form {
-  transform: translateX(-101%);
-  height: 100%;
+  border: 0.5px solid $font--color;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $font--color;
+  z-index: 999;
+  height: max-content;
   width: 50%;
-  background: white;
+  background: $primary--clr;
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 150ms ease-in;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  h1 {
+    margin-bottom: 1.5rem;
+    font-weight: 200;
+    letter-spacing: 2px;
+  }
   .form__control {
-    width: 15rem;
-    background-color: aqua;
+    width: 20rem;
     margin-block: 1rem;
     input,
     select,
     button {
+      color: $font--color;
+      border: 1px solid $font--color;
+      font-weight: 300;
       font-size: 1.1rem;
       width: 100%;
       padding: 1rem;
+      background: transparent;
+      &::placeholder {
+        color: $font--color;
+      }
+    }
+    select {
+      background: $primary--clr;
+    }
+    button {
+      transition: all 150ms ease-in;
+      &:hover {
+        border: 1px solid $font--color;
+        background: $secondary--clr;
+        cursor: pointer;
+      }
     }
   }
   .close__btn {
@@ -26,11 +59,43 @@
     right: 10px;
     font-size: 2rem;
     cursor: pointer;
-    color: black;
+    transition: opacity 150ms ease-in;
+    &:hover {
+      opacity: 0.7;
+    }
   }
 }
 
 .show {
   height: 100%;
   transform: translateX(0);
+}
+
+.loading__btn {
+  background: $font--color !important;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    aspect-ratio: 1;
+    background: $secondary--clr;
+    top: 50%;
+    left: 50%;
+    animation: Loading 500ms ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    border-radius: 25%;
+    transform-origin: left;
+  }
+}
+
+@keyframes Loading {
+  0% {
+    transform: scale(1) translate(-50%, -50%);
+    background: $primary--clr;
+  }
+  100% {
+    transform: scale(1.2) translate(-50%, -50%);
+    background: $secondary--clr;
+  }
 }

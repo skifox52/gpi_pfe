@@ -15,7 +15,7 @@ const initialState = {
 //Login
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    const response = await axios.post("http://localhost:5000/auth/login", user)
+    const response = await axios.post(API_URL, user)
     if (response.data) {
       localStorage.setItem("User", JSON.stringify(response.data))
     }

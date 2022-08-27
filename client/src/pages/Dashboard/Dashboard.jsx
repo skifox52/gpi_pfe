@@ -22,7 +22,7 @@ function Dashboard() {
     if (isError) {
       toast.error(message)
     }
-  }, [user, isError, isLoading])
+  }, [user, isError, isLoading, message, navigate])
   if (isLoading) {
     return <Spinner />
   }

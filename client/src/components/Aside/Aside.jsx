@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import {
   FaUser,
   FaRegComment,
-  FaList,
   FaLock,
   FaTabletAlt,
   FaRegFileAlt,

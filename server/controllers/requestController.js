@@ -4,7 +4,6 @@ const expressAsyncHandler = require("express-async-handler")
 //Get all request
 exports.getRequest = expressAsyncHandler(async (req, res) => {
   try {
-    console.log(req.user)
     const [request, _] = await RequestModel.fetchRequest()
     res.status(200).json(request)
   } catch (error) {
@@ -17,8 +16,7 @@ exports.getRequest = expressAsyncHandler(async (req, res) => {
 exports.postRequest = expressAsyncHandler(async (req, res) => {
   try {
     const { id_util } = req.user[0]
-    const { id_mat, type_requete, titre, description, urgence, piece_jointe } =
-      req.body
+    const { id_mat, type_requete, titre, description, urgence } = req.body
     const newRequest = new RequestModel(
       id_util,
       id_mat,
@@ -27,8 +25,7 @@ exports.postRequest = expressAsyncHandler(async (req, res) => {
       `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
       titre,
       description,
-      urgence,
-      piece_jointe
+      urgence
     )
     await newRequest.save()
     res.status(200).json(newRequest)

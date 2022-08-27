@@ -19,7 +19,7 @@ function Utilisateur() {
     return () => {
       dispatch(reset())
     }
-  }, [message, dispatch])
+  }, [message, dispatch, status])
   if (status === "pending") return <DashboardSpinner />
   return (
     <div className="utilisateurs">

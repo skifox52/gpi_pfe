@@ -4,6 +4,7 @@ const errorHandler = require("./middleware/errorHandler")
 const authRouter = require("./routes/authRouter")
 const userRouter = require("./routes/userRouter")
 const requestRouter = require("./routes/requestRouter")
+const materielRouter = require("./routes/materielRoute")
 const cors = require("cors")
 
 const app = express()
@@ -25,6 +26,7 @@ app.use(
 app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/request", requestRouter)
+app.use("/materiel", materielRouter)
 
 // Home page
 
