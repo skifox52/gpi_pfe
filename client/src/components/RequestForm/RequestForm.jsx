@@ -6,14 +6,16 @@ import { reset, fetchMateriel } from "../../features/materiel/materiel"
 import { postRequest } from "../../features/request/request"
 import { useSelector, useDispatch } from "react-redux"
 
-function RequestForm({ setFormModal, viewContainer, addContainer }) {
+function RequestForm({ getModal }) {
+  const myForm = useRef(null)
   const formRef = useRef(null)
-  const submitBtn = useRef(null)
   const dispatch = useDispatch()
   const [formData, setFormData] = useState()
   const { materiel, message, status } = useSelector((state) => state.materiel)
   const request = useSelector((state) => state.request)
-
+  const setFormModal = () => {
+    formRef.current.close()
+  }
   //UseEffect
   useEffect(() => {
     dispatch(fetchMateriel())
@@ -21,17 +23,15 @@ function RequestForm({ setFormModal, viewContainer, addContainer }) {
     if (status === "error") {
       toast.error(message)
     }
-    if (request.status === "pending") {
-      submitBtn.current.classList.add("loading__btn")
-    }
-    if (request.status === "success") {
-      submitBtn.current.classList.remove("loading__btn")
+    getModal(formRef)
+
+    if (request.status === "success" && formRef.current.hasAttribute("open")) {
       toast.success("Votre requète a été envoyer!")
     }
     return () => {
       dispatch(reset())
     }
-  }, [dispatch, formRef, submitBtn, request.status, request.message])
+  }, [dispatch, formRef, request.status, request.message])
   const onChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -41,12 +41,13 @@ function RequestForm({ setFormModal, viewContainer, addContainer }) {
   const onSubmit = (e) => {
     e.preventDefault()
     dispatch(postRequest(formData))
+    myForm.current.reset()
   }
   return (
-    <dialog open className="request__form" ref={formRef}>
-      <h1>Ajouter une requete</h1>
+    <dialog className="request__form" ref={formRef}>
+      <h1>Ajouter une requète</h1>
       <IoMdClose className="close__btn" onClick={setFormModal} />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} ref={myForm}>
         <div className="form__control">
           <select
             name="id_mat"

@@ -4,7 +4,8 @@ const expressAsyncHandler = require("express-async-handler")
 //Get all request
 exports.getRequest = expressAsyncHandler(async (req, res) => {
   try {
-    const [request, _] = await RequestModel.fetchRequest()
+    const { id_util } = req.user[0]
+    const [request, _] = await RequestModel.fetchRequest(id_util)
     res.status(200).json(request)
   } catch (error) {
     res.status(400)

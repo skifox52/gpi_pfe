@@ -11,11 +11,8 @@ import RequestForm from "../../components/RequestForm/RequestForm"
 import RequestList from "../../components/RequestList/RequestList"
 
 function UserHome() {
-  //Query selectors
-  const [viewClick, setViewClick] = useState(false)
-  const [addClick, setAddClick] = useState(false)
-  const addContainer = useRef(null)
-  const viewContainer = useRef(null)
+  const [openFormModal, setOpenFormModal] = useState(null)
+  const [openViewModal, setOpenViewModal] = useState(null)
 
   //UseSelectors
   const { user, isError, message, isLoading } = useSelector(
@@ -23,13 +20,18 @@ function UserHome() {
   )
   //onClick functions
   const onClickForm = (e) => {
-    setAddClick(true)
+    openFormModal.current.showModal()
+  }
+  const onClickView = (e) => {
+    openViewModal.current.showModal()
   }
   //SetState functions
-  const setFormModal = () => {
-    setAddClick(false)
+  const getModal = (modal) => {
+    setOpenFormModal(modal)
   }
-
+  const getViewModal = (modal) => {
+    setOpenViewModal(modal)
+  }
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -42,22 +44,30 @@ function UserHome() {
     if (isError) {
       toast.error(message)
     }
-  }, [isError, isLoading, user, message, navigate, addContainer, viewContainer])
-  if (isLoading) return <Spinner />
+  }, [
+    isError,
+    isLoading,
+    user,
+    message,
+    navigate,
 
+    openFormModal,
+    openViewModal,
+  ])
+  if (isLoading) return <Spinner />
   return (
     <div className="user-home">
       <Navbar />
       <UserDetails />
+      <RequestForm getModal={getModal} />
+      <RequestList getViewModal={getViewModal} />
       <div className="container">
-        {addClick && <RequestForm setFormModal={setFormModal} />}
-        {viewClick && <RequestList />}
-        <div className="add" onClick={onClickForm} ref={addContainer}>
+        <div className="add" onClick={onClickForm}>
           <h1>
             Ajouter une requète <AiFillPlusSquare className="plus__icon" />
           </h1>
         </div>
-        <div className="view" ref={viewContainer}>
+        <div className="view" onClick={onClickView}>
           <h1>
             Afficher mes requètes{" "}
             <AiOutlineUnorderedList className="plus__icon" />
