@@ -11,6 +11,9 @@ function RequestList({ getViewModal }) {
   const { request, message, status } = useSelector((state) => state.request)
 
   //Functions
+  const sortedData = [...request].sort((a, b) => {
+    return b.id_requete - a.id_requete
+  })
   const closeViewModal = (e) => {
     requestRef.current.close()
   }
@@ -22,18 +25,27 @@ function RequestList({ getViewModal }) {
     return () => {
       dispatch(reset())
     }
-  }, [requestRef, message])
+  }, [requestRef, message, getViewModal, dispatch])
+
   return (
     <dialog className="request__list" ref={requestRef}>
       <IoMdClose className="close__btn" onClick={closeViewModal} />
+      <h1>Mes requètes</h1>
       <div className="request__list__container">
         {request.length > 0 ? (
           request.map((request) => (
-            <div className="single__request" key={request.id_requete}>
+            <div className="single__request" key={request.id_requete + 1}>
               <h2>{request.titre_requete}</h2>
               <h3>{request.type_requete}</h3>
-              <h4>{request.date_requete.split("T")[0]}</h4>
+              <h4>{request.date_requete?.split("T")[0]}</h4>
               <span>{request.heure_requete}</span>
+              {request.statut === "En attente" ? (
+                <p style={{ color: "#EBF077" }}>{request.statut}</p>
+              ) : request.statut === "Refusé" ? (
+                <p style={{ color: "#D85B5B" }}>{request.statut}</p>
+              ) : (
+                <p style={{ color: "#8CEC70" }}>{request.statut}</p>
+              )}
             </div>
           ))
         ) : (

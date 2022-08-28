@@ -1,4 +1,4 @@
-$primary--clr: #0e323c;
+$primary--clr: rgba(21, 76, 90, 0.951);
 $secondary--clr: #0d585f;
 $font--color: #c2f9ff;
 
@@ -10,7 +10,7 @@ $font--color: #c2f9ff;
   transform: translate(-50%, -50%);
   color: $font--color;
   z-index: -9;
-  height: 80vh;
+  height: max-content;
   width: max-content;
   background: $primary--clr;
   position: fixed;

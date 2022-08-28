@@ -27,6 +27,7 @@ function RequestForm({ getModal }) {
 
     if (request.status === "success" && formRef.current.hasAttribute("open")) {
       toast.success("Votre requète a été envoyer!")
+      window.location.reload()
     }
     return () => {
       dispatch(reset())
