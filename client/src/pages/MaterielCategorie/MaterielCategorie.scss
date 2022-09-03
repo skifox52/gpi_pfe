@@ -1,0 +1,139 @@
+$secondary--color: #c2f9ff;
+$primary--color: rgba(21, 76, 90, 0.951);
+$font--color: #0d585f;
+
+.spinner {
+  position: fixed;
+  top: 50vh;
+  transform: translateY(-50%, -50%);
+  z-index: 999;
+}
+
+.categorie__materiel {
+  color: $secondary--color;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  gap: 4em;
+  h1 {
+    padding-top: 1.5em;
+    font-weight: 300;
+    letter-spacing: 4px;
+  }
+  .categorie__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      gap: 2em;
+      list-style: none;
+      li {
+        .single__categorie {
+          background: $primary--color;
+          border-bottom: 1px solid $secondary--color;
+          position: relative;
+          padding: 1em;
+          padding-left: 1.5em;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          transition: all 100ms ease-in;
+          font-weight: 400;
+          letter-spacing: 3px;
+          .show__btn {
+            position: absolute;
+            right: 1em;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .hide__btn {
+            position: absolute;
+            right: 50%;
+          }
+          &:hover {
+            color: $primary--color;
+            background: $secondary--color;
+            border-bottom: 1px solid $font--color;
+            cursor: pointer;
+          }
+          &:hover .content > .single__mat {
+            border-bottom: 1px solid $primary--color;
+          }
+          .content {
+            max-width: 100%;
+            padding-top: 1em;
+            padding-inline: 2em;
+            .single__mat {
+              border-bottom: 1px solid $secondary--color;
+              padding: 1em;
+              &:last-of-type {
+                border-bottom: none;
+              }
+              h4 {
+                margin-bottom: 0.5em;
+                &:last-of-type {
+                  margin-bottom: 0;
+                }
+              }
+              h5 {
+                font-weight: 300;
+                letter-spacing: 3px;
+              }
+            }
+          }
+        }
+        &:last-of-type {
+          margin-bottom: 5em;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .categorie__materiel {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 1050px) {
+  .categorie__materiel {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 850px) {
+  .categorie__materiel {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 620px) {
+  .categorie__materiel {
+    font-size: 0.57rem;
+  }
+}
+@media (max-width: 520px) {
+  .categorie__materiel {
+    font-size: 0.52rem;
+  }
+}
+@media (max-width: 460px) {
+  .categorie__materiel {
+    font-size: 0.4rem;
+  }
+}
+@media (max-width: 380px) {
+  .categorie__materiel {
+    font-size: 0.35rem;
+  }
+}
+@media (max-width: 340px) {
+  .categorie__materiel {
+    font-size: 0.2rem;
+  }
+}

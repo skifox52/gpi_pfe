@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   overflow: hidden;
-  height: 2.5rem;
+  height: 2.5em;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -24,16 +24,35 @@
         width: 100%;
         transform: translateX(-50%);
       }
-      .user-icon {
-        font-size: 1.2rem;
-        color: rgba(240, 240, 240, 0.9);
-        cursor: pointer;
-        transition: all 150ms ease-in-out;
-        &:hover {
-          font-size: 1.5rem;
-          opacity: 0.8;
-        }
-      }
     }
   }
+}
+
+@media (max-width: 1250px) {
+  .navbar {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .navbar {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 850px) {
+}
+@media (max-width: 620px) {
+}
+@media (max-width: 480px) {
+}
+@media (max-width: 300px) {
+}
+
+@media (max-height: 650px) {
+}
+@media (max-height: 465px) {
+}
+@media (max-height: 300px) {
+}
+@media (max-height: 200px) {
 }

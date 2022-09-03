@@ -1,29 +1,37 @@
 import "./Utilisateur.scss"
-import { fetchUsers, reset } from "../../features/users/usersSlince"
-import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import axios from "axios"
 import { toast } from "react-toastify"
 import Users from "../../components/User/Users"
 import DashboardSpinner from "../../components/DashboardSpinner/DashboardSpinner"
 
 function Utilisateur() {
-  const dispatch = useDispatch()
-  const { status, users, message } = useSelector((state) => state.users)
+  const API_URI = "/users/all"
+  const token = useSelector((state) => state.auth.user.token)
+  const config = { headers: { Authorization: `Bearer ${token}` } }
+  const [users, setUsers] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    dispatch(fetchUsers())
-
-    if (status === "error") {
-      toast.error(message)
+    const fetchUsers = async () => {
+      try {
+        const respones = await axios.get(API_URI, config)
+        setUsers(respones.data)
+        setIsLoading(false)
+      } catch (error) {
+        toast.error(error)
+      }
     }
+    fetchUsers()
     return () => {
-      dispatch(reset())
+      setUsers([])
     }
-  }, [message, dispatch, status])
-  if (status === "pending") return <DashboardSpinner />
+  }, [])
+  if (isLoading) return <DashboardSpinner />
   return (
     <div className="utilisateurs">
-      {users.map((user, i) => (
+      {users?.map((user, i) => (
         <Users user={user} key={i} />
       ))}
     </div>
