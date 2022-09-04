@@ -1,37 +1,39 @@
-.spinner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  background: #0e1d25;
-  &::before,
-  &::after {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background: #f9f871;
-    border-radius: 50%;
-    animation: bounce 500ms infinite forwards;
-    box-shadow: inset 1px 1px 1px #f0f0f0;
-  }
-  &::after {
-    background: #00766f;
-    animation-delay: 250ms;
-    box-shadow: inset 1px 1px 1px #333;
-  }
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-30px);
+html {
+  .spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    background: #0e1d25;
+    &::before,
+    &::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: #f9f871;
+      border-radius: 50%;
+      animation: bounce 500ms infinite forwards;
+      box-shadow: inset 1px 1px 1px #f0f0f0;
+    }
+    &::after {
+      background: #00766f;
+      animation-delay: 250ms;
+      box-shadow: inset 1px 1px 1px #333;
+    }
   }
 
-  100% {
-    transform: translateY(0);
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-30px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 }

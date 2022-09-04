@@ -11,69 +11,26 @@ import RequestForm from "../../components/RequestForm/RequestForm"
 import RequestList from "../../components/RequestList/RequestList"
 
 function UserHome() {
-  const [openFormModal, setOpenFormModal] = useState(null)
-  const [openViewModal, setOpenViewModal] = useState(null)
-
+  const navigate = useNavigate()
   //UseSelectors
   const { user, isError, message, isLoading } = useSelector(
     (state) => state.auth
   )
-  //onClick functions
-  const onClickForm = (e) => {
-    openFormModal.current.showModal()
-  }
-  const onClickView = (e) => {
-    openViewModal.current.showModal()
-  }
-  //SetState functions
-  const getModal = (modal) => {
-    setOpenFormModal(modal)
-  }
-  const getViewModal = (modal) => {
-    setOpenViewModal(modal)
-  }
-  const navigate = useNavigate()
 
   useEffect(() => {
-    //<Document>
-
-    //</Document>
     if (!user || user === null) {
       navigate("/login")
     }
     if (isError) {
       toast.error(message)
     }
-  }, [
-    isError,
-    isLoading,
-    user,
-    message,
-    navigate,
-
-    openFormModal,
-    openViewModal,
-  ])
+  }, [isError, isLoading, user, message, navigate])
   if (isLoading) return <Spinner />
   return (
     <div className="user-home">
       <Navbar />
       <UserDetails />
-      <RequestForm getModal={getModal} />
-      <RequestList getViewModal={getViewModal} />
-      <div className="container">
-        <div className="add" onClick={onClickForm}>
-          <h1>
-            Ajouter une requète <AiFillPlusSquare className="plus__icon" />
-          </h1>
-        </div>
-        <div className="view" onClick={onClickView}>
-          <h1>
-            Afficher mes requètes{" "}
-            <AiOutlineUnorderedList className="plus__icon" />
-          </h1>
-        </div>
-      </div>
+      <RequestList />
     </div>
   )
 }

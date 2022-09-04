@@ -38,7 +38,8 @@ class RequestModel {
   }
   //Fetch request
   static fetchRequest(id) {
-    const query = "SELECT * FROM requete where id_utilisateur=?"
+    const query =
+      "SELECT id_requete, date_requete,nom_mat, heure_requete, type_requete,titre_requete, description_requete, urgence_requete, statut FROM requete, materiel WHERE materiel.id_mat=requete.id_materiel AND id_utilisateur=?;"
     const requests = db.execute(query, [id])
     return requests
   }

@@ -1,10 +1,7 @@
-import './Spinner.scss'
+import "./Spinner.scss"
 
-function Spinner ()  {
-
-  return (
-    <div className="spinner"></div>
-  )
+function Spinner() {
+  return <div className="spinner"></div>
 }
 
 export default Spinner
