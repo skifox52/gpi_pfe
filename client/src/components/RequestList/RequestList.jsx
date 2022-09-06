@@ -4,9 +4,10 @@ import { toast } from "react-toastify"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
 import autoAnimate from "@formkit/auto-animate"
 import { useSelector } from "react-redux"
+import { ImSad } from "react-icons/im"
 import axios from "axios"
 
-function RequestList() {
+function RequestList({ forceUpdate }) {
   const API_URI = "/request"
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
@@ -27,12 +28,11 @@ function RequestList() {
     return () => {
       setRequest([])
     }
-  }, [parent])
+  }, [parent, forceUpdate])
   const sortedRequests =
     request.length > 0
       ? request.sort((a, b) => b.id_requete - a.id_requete)
       : []
-  console.log(sortedRequests)
   return (
     <div className="request__list" ref={parent}>
       <h2
@@ -48,12 +48,38 @@ function RequestList() {
         )}
       </h2>
 
-      {isOpen &&
-        sortedRequests.map((req) => (
-          <div className="single__request" key={req.id_requete + 1}>
-            {req.type_requete}
-          </div>
-        ))}
+      {isOpen && (
+        <div className="requests">
+          {request.length > 0 ? (
+            sortedRequests.map((req) => (
+              <div className="single__request" key={req.id_requete + 1}>
+                <span>Matériel: </span>
+                <h3>{req.nom_mat}</h3>
+                <span>Type de requete: </span>
+                <h3>{req.type_requete}</h3>
+                <span>Statut requete: </span>
+                <h3
+                  style={
+                    req.statut.toLowerCase() === "satisfaite"
+                      ? { color: "green" }
+                      : req.statut.toLowerCase() === "refusé"
+                      ? { color: "red" }
+                      : { color: "orange" }
+                  }
+                >
+                  {req.statut}
+                </h3>
+                <p>{req.date_requete.split("T")[0]}</p>
+                <p>{req.heure_requete}</p>
+              </div>
+            ))
+          ) : (
+            <h1 className="no__request">
+              Vous avez aucune requète <ImSad />
+            </h1>
+          )}
+        </div>
+      )}
     </div>
   )
 }

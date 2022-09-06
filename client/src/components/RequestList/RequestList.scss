@@ -3,21 +3,83 @@ $primary--color: rgba(21, 76, 90, 0.951);
 $font--color: #0d585f;
 
 .request__list {
-  cursor: pointer;
+  border: 1px solid $secondary--color;
   width: 50%;
+  border-radius: 0 0 10px 10px;
   height: max-content;
-  background: $secondary--color;
-  color: $font--color;
+  background-color: $primary--color;
+  color: $secondary--color;
   position: relative;
   padding: 0.5em 1em;
+  transition: all 150ms ease-in;
   h2 {
     font-weight: 400;
     letter-spacing: 1px;
-    // vertical-align: middle;
+    cursor: pointer;
+    padding-bottom: 0.5em;
   }
   .down__arrow {
     position: absolute;
     right: 1em;
     vertical-align: middle;
+  }
+  .up__arrow {
+    @extend .down__arrow;
+    left: 50%;
+  }
+  .requests {
+    height: auto;
+    .single__request {
+      border-top: 1px solid $secondary--color;
+      padding: 1em;
+      position: relative;
+      span {
+        font-size: 0.85em;
+        font-weight: 300;
+      }
+      h3 {
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-bottom: 0.5em;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+      p {
+        position: absolute;
+        right: 1rem;
+        bottom: 1em;
+        font-weight: 600;
+        &:first-of-type {
+          bottom: 2.2em;
+        }
+      }
+    }
+    .no__request {
+      border-top: 1px solid $secondary--color;
+      text-align: center;
+      padding: 1em 0 1em 0;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+    }
+  }
+  &:hover {
+    background: $secondary--color;
+    color: $font--color;
+    .requests {
+      .single__request {
+        border-bottom: 1px solid $font--color;
+        &:first-of-type {
+          border-top: 1px solid $font--color;
+        }
+        &:last-of-type {
+          border: none;
+        }
+      }
+    }
   }
 }

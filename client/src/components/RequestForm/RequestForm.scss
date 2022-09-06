@@ -1,72 +1,85 @@
-$primary--clr: rgba(21, 76, 90, 0.951);
-$secondary--clr: #0d585f;
-$font--color: #c2f9ff;
+$secondary--color: #c2f9ff;
+$primary--color: rgba(21, 76, 90, 0.951);
+$font--color: #0d585f;
 
 .request__form {
-  border: 0.5px solid $font--color;
-  border-radius: 10px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: $font--color;
-  z-index: -9;
+  border: 1px solid $secondary--color;
+  color: $secondary--color;
   height: max-content;
-  width: max-content;
-  background: $primary--clr;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 2.5rem 3.5rem;
-  box-shadow: 3px 5px 10px hsl(201, 45%, 5%),
-    inset -2px -2px 7px rgba(240, 240, 240, 0.1);
-  &::backdrop {
-    background-color: rgba($color: #000000, $alpha: 0.3);
-  }
-  h1 {
-    margin-bottom: 1.5rem;
-    font-weight: 200;
-    letter-spacing: 2px;
-  }
-  .form__control {
-    width: 20rem;
-    margin-block: 1rem;
-    input,
-    select,
-    button {
-      color: $font--color;
-      border: 1px solid $font--color;
-      font-weight: 300;
-      font-size: 1.1rem;
-      width: 100%;
-      padding: 1rem;
-      background: transparent;
-      &::placeholder {
-        color: $font--color;
-      }
-    }
-    select {
-      background: $primary--clr;
-    }
-    button {
-      transition: all 150ms ease-in;
-      &:hover {
-        border: 1px solid $font--color;
-        background: $secondary--clr;
-        cursor: pointer;
-      }
-    }
-  }
-  .close__btn {
+  width: 50%;
+  background: $primary--color;
+  position: relative;
+  border-radius: 0 0 10px 10px;
+  padding: 0.5em 1em;
+  transition: all 150ms ease-in;
+  .down__arrow {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 2rem;
+    right: 1em;
+    vertical-align: middle;
+  }
+  .up__arrow {
+    @extend .down__arrow;
+    left: 50%;
+  }
+  h2 {
     cursor: pointer;
-    transition: opacity 150ms ease-in;
-    &:hover {
-      opacity: 0.7;
+    font-weight: 400;
+    letter-spacing: 1px;
+    padding-bottom: 0.5em;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top: 1px solid $secondary--color;
+    padding: 1em;
+    padding-top: 2em;
+    .form__control {
+      width: 20rem;
+      margin-block: 0.25rem;
+      input,
+      select,
+      button {
+        color: $secondary--color;
+        border: 1px solid $secondary--color;
+        font-weight: 400;
+        font-size: 1.1rem;
+        width: 100%;
+        padding: 1rem;
+        background: transparent;
+        &::placeholder {
+          color: $secondary--color;
+        }
+      }
+
+      button {
+        transition: all 150ms ease-in;
+        &:hover {
+          background: $primary--color;
+          color: $secondary--color;
+          border: 1px solid $secondary--color;
+          cursor: pointer;
+          transform: translateY(2px);
+        }
+      }
+    }
+  }
+  &:hover {
+    background: $secondary--color;
+    color: $font--color;
+    form {
+      border-top: 1px solid $font--color;
+      input,
+      select,
+      button {
+        color: $font--color;
+        background-color: inherit;
+        border: 1px solid $font--color;
+        &::placeholder {
+          color: $font--color;
+        }
+      }
     }
   }
 }

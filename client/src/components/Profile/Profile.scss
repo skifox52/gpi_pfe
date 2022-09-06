@@ -1,14 +1,14 @@
-@import url("../Logout/Logout.scss");
+// @import url("../Logout/Logout.scss");
 
 .profile-btn {
   padding: 0.75em 0.45em;
   border: none;
-  padding-inline: rem;
+  padding-inline: 1em;
   cursor: pointer;
   font-weight: 400;
   height: 100%;
   color: #befcff;
-  background: #0d585f;
+  background: rgba(21, 76, 90, 0.951);
   transition: all 150ms ease-in;
   margin-right: 0.5rem;
   &:hover {
