@@ -1,0 +1,98 @@
+$secondary--color: rgba(194, 249, 255, 0.6);
+$font--color: rgba(194, 249, 255, 1);
+$primary--color: rgba(21, 76, 90, 0.951);
+
+.single-user {
+  position: relative;
+  background-color: #0e323c;
+  padding: 1em 2em;
+  font-weight: 500;
+  font-size: 1em;
+  border-radius: 0.5em;
+  box-shadow: 3px 5px 10px hsl(201, 45%, 5%),
+    inset -2px -2px 7px rgba(240, 240, 240, 0.1);
+  display: flex;
+  flex-direction: column;
+  //   gap: 0.35em;
+  overflow: hidden;
+  .btn__container {
+    width: 100%;
+    .modifier__btn {
+      width: 100%;
+      margin-block: 0.5em;
+      padding-block: 0.5em;
+      border-radius: 10px;
+      font-size: 0.85em;
+      border: none;
+      cursor: pointer;
+      font-weight: 400;
+      color: #befcff;
+      border: 1px solid #befcff;
+      background: rgba(21, 76, 90, 0.951);
+      transition: all 150ms ease-in;
+      &:hover {
+        color: #f0f0f0;
+        background: hsl(185, 76%, 31%);
+      }
+    }
+  }
+  .btn__container__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .btn__container {
+      .annuler__btn {
+        @extend .modifier__btn;
+        width: 90%;
+        float: right;
+      }
+      .appliquer__btn {
+        @extend .modifier__btn;
+        width: 90%;
+      }
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0.6em;
+    background: #c1faff;
+  }
+
+  p {
+    width: 100%;
+    font-weight: 400;
+    color: #c1faff;
+    letter-spacing: 1px;
+    margin-bottom: 0.75em;
+  }
+  span {
+    width: 100%;
+    display: inline-block;
+    color: #4b7d8c;
+    font-size: 0.7em;
+    margin-bottom: 0.2em;
+    font-weight: 400;
+    text-align: start;
+  }
+  input {
+    width: 100%;
+    font-size: 0.85em;
+    color: $font--color;
+    border-radius: 5px;
+    border: 1px solid $secondary--color;
+    font-weight: 300;
+    padding: 0.5em;
+    outline: none;
+    margin-bottom: 0.75em;
+    background: transparent;
+    letter-spacing: 1px;
+    &::placeholder {
+      color: $secondary--color;
+    }
+  }
+}

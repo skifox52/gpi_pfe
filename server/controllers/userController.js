@@ -1,6 +1,5 @@
 const expressAsyncHandler = require("express-async-handler")
 const UserModel = require("../Models/UserModel")
-const authModel = require("../Models/authModel")
 const AuthModel = require("../Models/authModel")
 
 //Fetch all users
@@ -9,11 +8,14 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
   try {
     let allUsers = []
     const [users, _] = await UserModel.fetchAllUsers()
+
     users.forEach((user) => {
       allUsers.push({
         Nom: user.nom_util,
         Prénom: user.prenom_util,
         Email: user.email_util,
+        Téléphone: user.teleph_util,
+        Téléphone_portable: user.teleph_mob_util,
       })
     })
     res.status(200).json(allUsers)

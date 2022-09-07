@@ -41,6 +41,7 @@ $font--color: #0d585f;
       input,
       select,
       button {
+        outline: none;
         color: $secondary--color;
         border: 1px solid $secondary--color;
         font-weight: 400;

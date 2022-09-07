@@ -3,12 +3,12 @@ import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
-import Users from "../../components/User/Users"
 import DashboardSpinner from "../../components/DashboardSpinner/DashboardSpinner"
+import SingleUtilisateur from "../../components/SingleUtilisateur/SingleUtilisateur"
 
 function Utilisateur() {
   const API_URI = "/users/all"
-  const token = useSelector((state) => state.auth.user.token)
+  const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -32,7 +32,7 @@ function Utilisateur() {
   return (
     <div className="utilisateurs">
       {users?.map((user, i) => (
-        <Users user={user} key={i} />
+        <SingleUtilisateur user={user} key={i} />
       ))}
     </div>
   )
