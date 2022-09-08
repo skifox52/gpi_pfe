@@ -52,15 +52,15 @@ exports.registerController = expressAsyncHandler(async (req, res) => {
 
 exports.loginController = expressAsyncHandler(async (req, res) => {
   try {
-    const { name, password } = req.body
-    if (!name || !password) {
+    const { id, password } = req.body
+    if (!id || !password) {
       throw new Error("Empty fields!")
     }
 
     //Fetch for user if exist
-    const [user, _] = await AuthModel.fetchUser(name)
+    const [user, _] = await AuthModel.fetchUser(id)
     if (user.length == 0) {
-      throw new Error("User doesn't exist!")
+      throw new Error("User id not found!")
     }
     const userId = user[0].id_util
     const userName = user[0].nom_util

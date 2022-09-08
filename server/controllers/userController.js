@@ -8,7 +8,6 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
   try {
     let allUsers = []
     const [users, _] = await UserModel.fetchAllUsers()
-
     users.forEach((user) => {
       allUsers.push({
         Nom: user.nom_util,
@@ -29,8 +28,8 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
 
 exports.fetchUser = expressAsyncHandler(async (req, res) => {
   try {
-    const name = req.params.name
-    const [user, _] = await AuthModel.fetchUser(name)
+    const { id_util } = req.user[0]
+    const [user, _] = await AuthModel.fetchUser(id_util)
     res.status(200).json({
       Id: user[0].id_util,
       Code_dep: user[0].code_dep,
@@ -40,6 +39,25 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
       TelephM: user[0].teleph_mob_util,
       Teleph: user[0].teleph_util,
     })
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+//Updata a User
+exports.updateUser = expressAsyncHandler(async (req, res) => {
+  try {
+    const { id_util } = req.user[0]
+    const { nom, prenom, email, tel_mob, tel } = req.body
+    const [user, _] = await UserModel.updateUser(id_util, {
+      nom,
+      prenom,
+      email,
+      tel_mob,
+      tel,
+    })
+    res.status(200).json(user)
   } catch (error) {
     res.status(400)
     throw new Error(error)

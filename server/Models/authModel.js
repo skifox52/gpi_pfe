@@ -22,9 +22,9 @@ class AuthModel {
     return newUser
   }
 
-  static fetchUser(name) {
-    const query = `SELECT * from utilisateur WHERE nom_util=?`
-    const user = db.execute(query, [name])
+  static fetchUser(id) {
+    const query = `SELECT * from utilisateur WHERE id_util=?`
+    const user = db.execute(query, [id])
     return user
   }
 }

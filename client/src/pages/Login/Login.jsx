@@ -11,10 +11,10 @@ import Spinner from "../../components/Spinner/Spinner"
 function Login() {
   //form data
   const [formData, setFormData] = useState({
-    name: "",
+    id: "",
     password: "",
   })
-  const { name: userName, password: userPassword } = formData
+  const { id: userId, password: userPassword } = formData
 
   //Get AUTH-STATE
   const navigate = useNavigate()
@@ -49,7 +49,7 @@ function Login() {
   //onSubmit function
   const onSubmit = (e) => {
     e.preventDefault()
-    if (!userName || !userPassword) {
+    if (!userId || !userPassword) {
       return toast.info("Remplissez vos champs...")
     }
 
@@ -68,10 +68,10 @@ function Login() {
       <form action="/" onSubmit={onSubmit}>
         <h1>Authentification</h1>
         <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Nom d'utilisateur..."
+          type="number"
+          id="id"
+          name="id"
+          placeholder="Idnetifiant..."
           onChange={onChange}
         />
         <input

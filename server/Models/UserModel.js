@@ -14,6 +14,13 @@ class UserModel {
     const result = db.execute(query, [id])
     return result
   }
+  //Update user
+  static updateUser(id, { nom, prenom, email, tel_mob, tel }) {
+    const query =
+      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=? WHERE id_util=?"
+    const result = db.execute(query, [nom, prenom, email, tel_mob, tel, id])
+    return result
+  }
 }
 
 module.exports = UserModel

@@ -6,19 +6,15 @@ import { IoCloseOutline } from "react-icons/io5"
 import { toast } from "react-toastify"
 
 function UserDetails() {
+  const API_URI = "/users"
   const [user, setUser] = useState()
   const user_name = useSelector((state) => state.auth.user)
-  const token =
-    useSelector((state) => (state.auth.user ? state.auth.user.token : null)) ||
-    null
+  const token = useSelector((state) => state.auth.user?.token)
   useEffect(() => {
     const fetchSingleUser = async (name) => {
       try {
         const config = { headers: { Authorization: `Bearer ${token}` } }
-        const response = await axios.get(
-          `http://localhost:5000/users/${name}`,
-          config
-        )
+        const response = await axios.get(`${API_URI}/${name}`, config)
         setUser(response.data)
       } catch (error) {
         toast.error(error)
