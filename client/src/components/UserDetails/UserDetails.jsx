@@ -8,20 +8,20 @@ import { toast } from "react-toastify"
 function UserDetails() {
   const API_URI = "/users"
   const [user, setUser] = useState()
-  const user_name = useSelector((state) => state.auth.user)
+  const id = useSelector((state) => state.auth.user?.userId)
   const token = useSelector((state) => state.auth.user?.token)
   useEffect(() => {
-    const fetchSingleUser = async (name) => {
+    const fetchSingleUser = async (id) => {
       try {
         const config = { headers: { Authorization: `Bearer ${token}` } }
-        const response = await axios.get(`${API_URI}/${name}`, config)
+        const response = await axios.get(`${API_URI}/${id}`, config)
         setUser(response.data)
       } catch (error) {
         toast.error(error)
       }
     }
     if (token) {
-      fetchSingleUser(user_name ? user_name.nom_util : "null")
+      fetchSingleUser(id)
     } else {
       return () => {
         setUser()
@@ -30,7 +30,7 @@ function UserDetails() {
     return () => {
       setUser()
     }
-  }, [token, user_name])
+  }, [token, id])
   return (
     <dialog className="user-details">
       <article className="user-detais-card">

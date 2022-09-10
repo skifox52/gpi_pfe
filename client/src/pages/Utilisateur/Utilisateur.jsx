@@ -12,7 +12,10 @@ function Utilisateur() {
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-
+  const [state, setState] = useState(false)
+  const changeState = () => {
+    setState(!state)
+  }
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -27,12 +30,12 @@ function Utilisateur() {
     return () => {
       setUsers([])
     }
-  }, [])
+  }, [state])
   if (isLoading) return <DashboardSpinner />
   return (
     <div className="utilisateurs">
       {users?.map((user, i) => (
-        <SingleUtilisateur user={user} key={i} />
+        <SingleUtilisateur user={user} key={i} changeState={changeState} />
       ))}
     </div>
   )

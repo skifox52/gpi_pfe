@@ -23,7 +23,6 @@ $primary--color: rgba(21, 76, 90, 0.951);
       padding-block: 0.5em;
       border-radius: 10px;
       font-size: 0.85em;
-      border: none;
       cursor: pointer;
       font-weight: 400;
       color: #befcff;
@@ -36,20 +35,42 @@ $primary--color: rgba(21, 76, 90, 0.951);
       }
     }
   }
-  .btn__container__container {
-    width: 100%;
+  .btn__container__container__container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .btn__container {
-      .annuler__btn {
-        @extend .modifier__btn;
-        width: 90%;
-        float: right;
+    flex-direction: column;
+    gap: 0.45em;
+    .btn__container__container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .btn__container {
+        .annuler__btn {
+          @extend .modifier__btn;
+          width: 95%;
+          float: right;
+        }
+        .appliquer__btn {
+          @extend .modifier__btn;
+          width: 95%;
+        }
       }
-      .appliquer__btn {
-        @extend .modifier__btn;
-        width: 90%;
+    }
+    .delete__btn {
+      width: 100%;
+      padding-block: 0.5em;
+      border-radius: 10px;
+      font-size: 0.95em;
+      background: #ed4545;
+      color: #ffe5de;
+      font-weight: 800;
+      border: 2px solid #ffe5de;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 150ms ease-in;
+      &:hover {
+        filter: saturate(200%);
+        letter-spacing: 2px;
       }
     }
   }

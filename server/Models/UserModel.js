@@ -21,6 +21,12 @@ class UserModel {
     const result = db.execute(query, [nom, prenom, email, tel_mob, tel, id])
     return result
   }
+  //Delete User
+  static deleteUser(id) {
+    const query = "DELETE FROM utilisateur WHERE id_util=?"
+    const result = db.execute(query, [id])
+    return result
+  }
 }
 
 module.exports = UserModel

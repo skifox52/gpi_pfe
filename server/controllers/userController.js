@@ -1,6 +1,5 @@
 const expressAsyncHandler = require("express-async-handler")
 const UserModel = require("../Models/UserModel")
-const AuthModel = require("../Models/authModel")
 
 //Fetch all users
 
@@ -10,6 +9,7 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
     const [users, _] = await UserModel.fetchAllUsers()
     users.forEach((user) => {
       allUsers.push({
+        Id: user.id_util,
         Nom: user.nom_util,
         Prénom: user.prenom_util,
         Email: user.email_util,
@@ -28,8 +28,8 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
 
 exports.fetchUser = expressAsyncHandler(async (req, res) => {
   try {
-    const { id_util } = req.user[0]
-    const [user, _] = await AuthModel.fetchUser(id_util)
+    const id = req.params.id
+    const [user, _] = await UserModel.findById(id)
     res.status(200).json({
       Id: user[0].id_util,
       Code_dep: user[0].code_dep,
@@ -48,9 +48,9 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
 //Updata a User
 exports.updateUser = expressAsyncHandler(async (req, res) => {
   try {
-    const { id_util } = req.user[0]
+    const id = req.params.id
     const { nom, prenom, email, tel_mob, tel } = req.body
-    const [user, _] = await UserModel.updateUser(id_util, {
+    const [user, _] = await UserModel.updateUser(id, {
       nom,
       prenom,
       email,
@@ -58,6 +58,18 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
       tel,
     })
     res.status(200).json(user)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+//Delete a user
+exports.deleteUser = expressAsyncHandler(async (req, res) => {
+  try {
+    const id = req.params.id
+    const [user, _] = await UserModel.deleteUser(id)
+    res.status(204).json(`User ${id} has been deleted`)
   } catch (error) {
     res.status(400)
     throw new Error(error)

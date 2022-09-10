@@ -4,7 +4,7 @@ import axios from "axios"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
 
-function SingleUtilisateur({ user, setReducer }) {
+function SingleUtilisateur({ user, changeState }) {
   const API_URI = "/users/update"
   const handleClick = useRef(null)
   const [modifier, setModifier] = useState(false)
@@ -21,7 +21,6 @@ function SingleUtilisateur({ user, setReducer }) {
   //Onchange function
 
   const onChange = (e) => {
-    console.log(formData)
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -31,17 +30,25 @@ function SingleUtilisateur({ user, setReducer }) {
   useEffect(() => {
     const updateUser = async () => {
       try {
-        console.log(formData)
-        await axios.put(API_URI, formData, config)
+        if (JSON.stringify(formData) === JSON.stringify(initialState)) {
+          setModifier(false)
+          return toast.warning("Aucun élément n'a été modifié")
+        }
+        await axios.put(`${API_URI}/${user.Id}`, formData, config)
+        setModifier(false)
+        changeState()
         toast.success("La modification a été effectué avec seccès!")
       } catch (error) {
         toast.error(error)
       }
     }
     handleClick.current = updateUser
-  }, [formData])
+  }, [formData, modifier, user])
+
   return (
     <article className="single-user" key={user.id_util + 1}>
+      <span>Id</span>
+      <p style={{ fontWeight: "bold", fontSize: "1.1em" }}>{user.Id}</p>
       <span>Nom</span>
       {modifier ? (
         <input
@@ -102,27 +109,39 @@ function SingleUtilisateur({ user, setReducer }) {
       )}
 
       {modifier ? (
-        <div className="btn__container__container">
-          <div className="btn__container">
-            <button
-              className="appliquer__btn"
-              onClick={(e) => {
-                handleClick.current()
-                setReducer()
-              }}
-            >
-              Appliquer
-            </button>
+        <div className="btn__container__container__container">
+          <div className="btn__container__container">
+            <div className="btn__container">
+              <button
+                className="appliquer__btn"
+                onClick={(e) => {
+                  handleClick.current()
+                }}
+              >
+                Appliquer
+              </button>
+            </div>
+            <div className="btn__container">
+              <button
+                className="annuler__btn"
+                onClick={(e) => {
+                  setModifier(!modifier)
+                  setFormData(initialState)
+                }}
+              >
+                Annuler
+              </button>
+            </div>
           </div>
           <div className="btn__container">
             <button
-              className="annuler__btn"
+              className="delete__btn"
               onClick={(e) => {
                 setModifier(!modifier)
                 setFormData(initialState)
               }}
             >
-              Annuler
+              Supprimer
             </button>
           </div>
         </div>
