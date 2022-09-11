@@ -5,6 +5,7 @@ import axios from "axios"
 import { toast } from "react-toastify"
 import DashboardSpinner from "../../components/DashboardSpinner/DashboardSpinner"
 import SingleUtilisateur from "../../components/SingleUtilisateur/SingleUtilisateur"
+import SearchBar from "../../components/serchBar/SearchBar"
 
 function Utilisateur() {
   const API_URI = "/users/all"
@@ -34,6 +35,9 @@ function Utilisateur() {
   if (isLoading) return <DashboardSpinner />
   return (
     <div className="utilisateurs">
+      <>
+        <SearchBar users={users} />
+      </>
       {users?.map((user, i) => (
         <SingleUtilisateur user={user} key={i} changeState={changeState} />
       ))}

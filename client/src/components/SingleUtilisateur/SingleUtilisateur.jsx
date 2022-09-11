@@ -3,10 +3,13 @@ import { useState, useEffect, useRef } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { useSelector } from "react-redux"
+import { confirmAlert } from "react-confirm-alert"
 
 function SingleUtilisateur({ user, changeState }) {
-  const API_URI = "/users/update"
+  const API_URI_UPDATE = "/users/update"
+  const API_URI_DELETE = "/users/delete"
   const handleClick = useRef(null)
+  const handleDelete = useRef(null)
   const [modifier, setModifier] = useState(false)
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
@@ -28,13 +31,14 @@ function SingleUtilisateur({ user, changeState }) {
   }
   //UseEffect
   useEffect(() => {
+    //Update user
     const updateUser = async () => {
       try {
         if (JSON.stringify(formData) === JSON.stringify(initialState)) {
           setModifier(false)
           return toast.warning("Aucun élément n'a été modifié")
         }
-        await axios.put(`${API_URI}/${user.Id}`, formData, config)
+        await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()
         toast.success("La modification a été effectué avec seccès!")
@@ -43,7 +47,19 @@ function SingleUtilisateur({ user, changeState }) {
       }
     }
     handleClick.current = updateUser
-  }, [formData, modifier, user])
+
+    //Delete user
+    const deleteUser = async () => {
+      try {
+        await axios.delete(`${API_URI_DELETE}/${user.Id}`, config)
+        changeState()
+        toast.info("L'utilisateur a bien été supprimé !")
+      } catch (error) {
+        toast.error(error)
+      }
+    }
+    handleDelete.current = deleteUser
+  }, [formData, modifier, user, handleClick, handleDelete])
 
   return (
     <article className="single-user" key={user.id_util + 1}>
@@ -136,9 +152,23 @@ function SingleUtilisateur({ user, changeState }) {
           <div className="btn__container">
             <button
               className="delete__btn"
+              ref={handleDelete}
               onClick={(e) => {
-                setModifier(!modifier)
-                setFormData(initialState)
+                confirmAlert({
+                  title: "Supprimer un utilisateur!",
+                  message: "Voulez vous vraiment supprimer cet utilisateur?",
+                  buttons: [
+                    {
+                      label: "Oui",
+                      onClick: () => {
+                        handleDelete.current()
+                      },
+                    },
+                    {
+                      label: "Non",
+                    },
+                  ],
+                })
               }}
             >
               Supprimer

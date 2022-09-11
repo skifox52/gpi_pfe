@@ -16,6 +16,7 @@ import Informaticien from "./pages/Informaticien/Informaticien"
 import Document from "./pages/Document/Document"
 import UserDb from "./pages/UserDb/UserDb"
 import UserHome from "./pages/UserHome/UserHome"
+import "react-confirm-alert/src/react-confirm-alert.css"
 
 function App() {
   const location = useLocation()
