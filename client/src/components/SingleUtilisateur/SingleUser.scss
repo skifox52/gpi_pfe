@@ -100,7 +100,8 @@ $primary--color: rgba(21, 76, 90, 0.951);
     font-weight: 400;
     text-align: start;
   }
-  input {
+  input,
+  select {
     width: 100%;
     font-size: 0.85em;
     color: $font--color;
@@ -115,5 +116,9 @@ $primary--color: rgba(21, 76, 90, 0.951);
     &::placeholder {
       color: $secondary--color;
     }
+  }
+  select {
+    background: $font--color;
+    color: $primary--color;
   }
 }

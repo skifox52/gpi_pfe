@@ -1,5 +1,6 @@
 const expressAsyncHandler = require("express-async-handler")
 const UserModel = require("../Models/UserModel")
+const bcrypt = require("bcrypt")
 
 //Fetch all users
 
@@ -15,6 +16,7 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
         Email: user.email_util,
         Téléphone: user.teleph_util,
         Téléphone_portable: user.teleph_mob_util,
+        Role: user.role,
       })
     })
     res.status(200).json(allUsers)
@@ -49,13 +51,16 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
 exports.updateUser = expressAsyncHandler(async (req, res) => {
   try {
     const id = req.params.id
-    const { nom, prenom, email, tel_mob, tel } = req.body
+    const { nom, prenom, email, tel_mob, tel, role, mdp } = req.body
+    const hashedPassword = await bcrypt.hash(mdp, 10)
     const [user, _] = await UserModel.updateUser(id, {
       nom,
       prenom,
       email,
       tel_mob,
       tel,
+      role,
+      hashedPassword,
     })
     res.status(200).json(user)
   } catch (error) {

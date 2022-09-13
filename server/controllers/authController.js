@@ -13,15 +13,11 @@ const genereateToken = (id) => {
 
 exports.registerController = expressAsyncHandler(async (req, res) => {
   try {
-    const { prenom, nom, mdp, email, telephM, teleph } = req.body
-    if (!prenom || !nom || !mdp || !email || !telephM || !teleph) {
+    const { prenom, nom, mdp, email, telephM, teleph, role } = req.body
+    if (!prenom || !nom || !mdp || !email || !telephM || !teleph || !role) {
       throw new Error("Empty fields!")
     }
-    //Fetch for user if exists!
-    const [user, _] = await AuthModel.fetchUser(nom)
-    if (user.length > 0) {
-      throw new Error("User already exists!")
-    }
+
     //Hash password
     const hashedPassword = await bcrypt.hash(mdp, 10)
 
@@ -33,15 +29,11 @@ exports.registerController = expressAsyncHandler(async (req, res) => {
       hashedPassword,
       email,
       telephM,
-      teleph
+      teleph,
+      role
     )
     await newUser.save()
-    const [userId, __] = await AuthModel.fetchUser(newUser.nom)
-    res.status(201).json({
-      userId: userId[0].id_util,
-      user: newUser.nom,
-      token: genereateToken(userId[0].id_util),
-    })
+    res.status(200).json("User created successfuly")
   } catch (error) {
     res.status(400)
     throw new Error(error)

@@ -11,14 +11,18 @@ function SingleUtilisateur({ user, changeState }) {
   const handleClick = useRef(null)
   const handleDelete = useRef(null)
   const [modifier, setModifier] = useState(false)
+  const userId = useSelector((state) => state.auth.user?.userId)
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
+
   const initialState = {
     nom: user.Nom,
     prenom: user.Prénom,
     email: user.Email,
     tel_mob: user.Téléphone_portable,
     tel: user.Téléphone,
+    role: user.Role,
+    mdp: "",
   }
   const [formData, setFormData] = useState(initialState)
   //Onchange function
@@ -38,6 +42,12 @@ function SingleUtilisateur({ user, changeState }) {
           setModifier(false)
           return toast.warning("Aucun élément n'a été modifié")
         }
+        if (formData["mdp"].length < 8) {
+          setModifier(false)
+          return toast.warning(
+            "Le mot de passe doit contenir au minimum 8 caractères!"
+          )
+        }
         await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()
@@ -47,7 +57,6 @@ function SingleUtilisateur({ user, changeState }) {
       }
     }
     handleClick.current = updateUser
-
     //Delete user
     const deleteUser = async () => {
       try {
@@ -75,7 +84,7 @@ function SingleUtilisateur({ user, changeState }) {
           onChange={onChange}
         />
       ) : (
-        <p>{user.Nom}</p>
+        <p>{user.Nom.toUpperCase()}</p>
       )}
       <span>Prénom</span>
       {modifier ? (
@@ -89,6 +98,15 @@ function SingleUtilisateur({ user, changeState }) {
       ) : (
         <p>{user.Prénom}</p>
       )}
+      <span>Role</span>
+      {modifier ? (
+        <select name="role" value={formData["role"]} onChange={onChange}>
+          <option value="admin">Administrateur</option>
+          <option value="utilisateur">Utilisateur</option>
+        </select>
+      ) : (
+        <p>{user.Role.toUpperCase()}</p>
+      )}
       <span>E-mail</span>
       {modifier ? (
         <input
@@ -100,6 +118,18 @@ function SingleUtilisateur({ user, changeState }) {
         />
       ) : (
         <p>{user.Email}</p>
+      )}
+      <span>Mot de passe</span>
+      {modifier ? (
+        <input
+          type="password"
+          name="mdp"
+          value={formData["mdp"]}
+          placeholder="Mot de passe..."
+          onChange={onChange}
+        />
+      ) : (
+        <p>********</p>
       )}
       <span>Téléphone portable</span>
       {modifier ? (
@@ -123,7 +153,6 @@ function SingleUtilisateur({ user, changeState }) {
       ) : (
         <p>0{user.Téléphone}</p>
       )}
-
       {modifier ? (
         <div className="btn__container__container__container">
           <div className="btn__container__container">
@@ -150,29 +179,31 @@ function SingleUtilisateur({ user, changeState }) {
             </div>
           </div>
           <div className="btn__container">
-            <button
-              className="delete__btn"
-              ref={handleDelete}
-              onClick={(e) => {
-                confirmAlert({
-                  title: "Supprimer un utilisateur!",
-                  message: "Voulez vous vraiment supprimer cet utilisateur?",
-                  buttons: [
-                    {
-                      label: "Oui",
-                      onClick: () => {
-                        handleDelete.current()
+            {userId !== user.Id && (
+              <button
+                className="delete__btn"
+                ref={handleDelete}
+                onClick={(e) => {
+                  confirmAlert({
+                    title: "Supprimer un utilisateur!",
+                    message: "Voulez vous vraiment supprimer cet utilisateur?",
+                    buttons: [
+                      {
+                        label: "Oui",
+                        onClick: () => {
+                          handleDelete.current()
+                        },
                       },
-                    },
-                    {
-                      label: "Non",
-                    },
-                  ],
-                })
-              }}
-            >
-              Supprimer
-            </button>
+                      {
+                        label: "Non",
+                      },
+                    ],
+                  })
+                }}
+              >
+                Supprimer
+              </button>
+            )}
           </div>
         </div>
       ) : (

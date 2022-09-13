@@ -1,4 +1,5 @@
 const express = require("express")
+const protect = require("../middleware/ptotect")
 
 const {
   registerController,
@@ -6,6 +7,8 @@ const {
 } = require("../controllers/authController")
 const authRouter = express.Router()
 
-authRouter.post("/register", registerController).post("/login", loginController)
+authRouter
+  .post("/register", protect, registerController)
+  .post("/login", loginController)
 
 module.exports = authRouter

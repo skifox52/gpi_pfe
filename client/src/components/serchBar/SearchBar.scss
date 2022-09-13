@@ -37,19 +37,19 @@
     }
   }
   .add__container {
-    border-radius: 5px;
-    overflow: hidden;
-    height: 5em;
+    border-radius: 5px 5px 20px 20px;
+    height: max-content;
     width: 100%;
     position: relative;
     color: #3f8577;
     background: #d9e9e5;
     transition: all 150ms ease-in;
+    overflow: hidden;
     .add__btn {
       font-size: 1em;
       width: 100%;
       cursor: pointer;
-      height: 100%;
+      padding-block: 1.5em;
       border: none;
       overflow: hidden;
       background: inherit;
@@ -67,8 +67,45 @@
       pointer-events: none;
     }
     &:hover {
-      background-color: #2d8474;
+      background-color: rgba(21, 76, 90, 0.951);
       color: #d9e9e5;
+    }
+    form {
+      padding: 1em;
+      padding-bottom: 1.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+      .form__control {
+        width: 60%;
+        input,
+        select,
+        button {
+          width: 100%;
+          padding: 0.6em;
+          border: none;
+          outline: none;
+          border-radius: 5px;
+          color: #3f8577;
+          font-weight: 500;
+          letter-spacing: 1px;
+          &::placeholder {
+            color: rgba(63, 133, 119, 0.7);
+            letter-spacing: 1px;
+          }
+        }
+        button {
+          cursor: pointer;
+          border: 1px solid transparent;
+          transition: all 150ms ease-out;
+          &:hover {
+            background-color: #2d8474;
+            color: #d9e9e5;
+            border: 1px solid #d9e9e5;
+          }
+        }
+      }
     }
   }
 }

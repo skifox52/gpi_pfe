@@ -14,6 +14,11 @@ function Utilisateur() {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [state, setState] = useState(false)
+  const [input, setInput] = useState("")
+  const searchInput = (value) => {
+    setInput(value)
+  }
+
   const changeState = () => {
     setState(!state)
   }
@@ -36,11 +41,26 @@ function Utilisateur() {
   return (
     <div className="utilisateurs">
       <>
-        <SearchBar users={users} />
+        <SearchBar
+          users={users}
+          changeState={changeState}
+          searchInput={searchInput}
+        />
       </>
-      {users?.map((user, i) => (
-        <SingleUtilisateur user={user} key={i} changeState={changeState} />
-      ))}
+      {users
+        ?.filter((user) => {
+          if (input === "") return user
+
+          if (
+            user.Nom.toLowerCase().includes(input.toLocaleLowerCase()) ||
+            user.Prénom.toLowerCase().includes(input.toLocaleLowerCase()) ||
+            user.Role.toLowerCase().includes(input.toLowerCase())
+          )
+            return user
+        })
+        .map((user, i) => (
+          <SingleUtilisateur user={user} key={i} changeState={changeState} />
+        ))}
     </div>
   )
 }

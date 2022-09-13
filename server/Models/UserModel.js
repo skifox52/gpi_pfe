@@ -15,10 +15,19 @@ class UserModel {
     return result
   }
   //Update user
-  static updateUser(id, { nom, prenom, email, tel_mob, tel }) {
+  static updateUser(id, { nom, prenom, email, tel_mob, tel, role, mdp }) {
     const query =
-      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=? WHERE id_util=?"
-    const result = db.execute(query, [nom, prenom, email, tel_mob, tel, id])
+      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=?, role=?, mdp_util=? WHERE id_util=?"
+    const result = db.execute(query, [
+      nom,
+      prenom,
+      email,
+      tel_mob,
+      tel,
+      role,
+      mdp,
+      id,
+    ])
     return result
   }
   //Delete User
