@@ -26,7 +26,6 @@ function SingleUtilisateur({ user, changeState }) {
   }
   const [formData, setFormData] = useState(initialState)
   //Onchange function
-
   const onChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -42,12 +41,15 @@ function SingleUtilisateur({ user, changeState }) {
           setModifier(false)
           return toast.warning("Aucun élément n'a été modifié")
         }
-        if (formData["mdp"].length < 8) {
+        if (formData["mdp"] === "") delete formData["mdp"]
+
+        if (formData["mdp"]?.length < 8) {
           setModifier(false)
           return toast.warning(
             "Le mot de passe doit contenir au minimum 8 caractères!"
           )
         }
+        console.log(formData)
         await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()

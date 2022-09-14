@@ -51,18 +51,33 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
 exports.updateUser = expressAsyncHandler(async (req, res) => {
   try {
     const id = req.params.id
-    const { nom, prenom, email, tel_mob, tel, role, mdp } = req.body
-    const hashedPassword = await bcrypt.hash(mdp, 10)
-    const [user, _] = await UserModel.updateUser(id, {
-      nom,
-      prenom,
-      email,
-      tel_mob,
-      tel,
-      role,
-      hashedPassword,
-    })
-    res.status(200).json(user)
+    let { nom, prenom, email, tel_mob, tel, role, mdp } = req.body
+
+    if (!mdp) {
+      console.log("hello")
+      const [user, _] = await UserModel.updateUserNoPassword(id, {
+        nom,
+        prenom,
+        email,
+        tel_mob,
+        tel,
+        role,
+      })
+      res.status(200).json(user)
+    } else {
+      const hashedPassword = await bcrypt.hash(mdp, 10)
+      mdp = hashedPassword
+      const [user, _] = await UserModel.updateUser(id, {
+        nom,
+        prenom,
+        email,
+        tel_mob,
+        tel,
+        role,
+        mdp,
+      })
+      res.status(200).json(user)
+    }
   } catch (error) {
     res.status(400)
     throw new Error(error)

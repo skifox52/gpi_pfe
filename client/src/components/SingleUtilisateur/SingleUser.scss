@@ -13,7 +13,6 @@ $primary--color: rgba(21, 76, 90, 0.951);
     inset -2px -2px 7px rgba(240, 240, 240, 0.1);
   display: flex;
   flex-direction: column;
-  //   gap: 0.35em;
   overflow: hidden;
   .btn__container {
     width: 100%;
@@ -89,16 +88,16 @@ $primary--color: rgba(21, 76, 90, 0.951);
     font-weight: 400;
     color: #c1faff;
     letter-spacing: 1px;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.5em;
   }
   span {
     width: 100%;
     display: inline-block;
     color: #4b7d8c;
     font-size: 0.7em;
-    margin-bottom: 0.2em;
     font-weight: 400;
     text-align: start;
+    line-height: 1.5;
   }
   input,
   select {

@@ -14,7 +14,7 @@ function SearchBar({ users, changeState, searchInput }) {
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const [isOpen, setIsOpen] = useState(false)
   const [search, setSearch] = useState("")
-  const [formData, setFormData] = useState({
+  const initialState = {
     nom: "",
     prenom: "",
     email: "",
@@ -23,10 +23,12 @@ function SearchBar({ users, changeState, searchInput }) {
     teleph: "",
     telephM: "",
     mdp2: "",
-  })
+  }
+  const [formData, setFormData] = useState(initialState)
   const debounceValue = useDebounce(search, 0)
   const { nom, prenom, email, mdp, teleph, telephM, mdp2 } = formData
   const parent = useRef(null)
+  const form = useRef(null)
   //onChange
   const onChange = (e) => {
     setFormData((prev) => ({
@@ -47,6 +49,8 @@ function SearchBar({ users, changeState, searchInput }) {
     try {
       await axios.post(API_URI_REGISTER, formData, config)
       toast.success("Utilisatueur créer avec succée!")
+      setFormData(initialState)
+      form.current.reset()
       changeState()
     } catch (error) {
       return toast.error(error)
@@ -55,7 +59,7 @@ function SearchBar({ users, changeState, searchInput }) {
   useEffect(() => {
     parent.current && autoAnimate(parent.current)
     searchInput(debounceValue)
-  }, [parent, debounceValue])
+  }, [parent, form, debounceValue])
   return (
     <div className="search__bar">
       <div className="input__container">
@@ -81,7 +85,7 @@ function SearchBar({ users, changeState, searchInput }) {
           Ajouter un utilisateur
         </button>
         {isOpen && (
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} ref={form}>
             <div className="form__control">
               <input
                 type="text"

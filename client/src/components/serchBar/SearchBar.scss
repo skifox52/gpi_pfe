@@ -62,7 +62,7 @@
       transform: translateY(-50%);
       font-size: 1.5em;
       color: inherit;
-      right: 0.6em;
+      right: 0.5em;
       font-weight: 800;
       pointer-events: none;
     }
@@ -78,7 +78,7 @@
       align-items: center;
       gap: 0.5em;
       .form__control {
-        width: 60%;
+        width: 75%;
         input,
         select,
         button {
