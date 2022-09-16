@@ -60,11 +60,11 @@ function RequestList({ forceUpdate }) {
                 <span>Statut requete: </span>
                 <h3
                   style={
-                    req.statut.toLowerCase() === "satisfaite"
-                      ? { color: "green" }
-                      : req.statut.toLowerCase() === "refusé"
-                      ? { color: "red" }
-                      : { color: "orange" }
+                    req.statut === "En attente"
+                      ? { color: "#D8B635" }
+                      : req.statut === "Refuser"
+                      ? { color: "#D84635" }
+                      : { color: "#35D888" }
                   }
                 >
                   {req.statut}

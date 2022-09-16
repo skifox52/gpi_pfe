@@ -4,14 +4,10 @@ import { Link } from "react-router-dom"
 import {
   FaUser,
   FaRegComment,
-  FaLock,
-  FaTabletAlt,
   FaRegFileAlt,
   FaServer,
-  FaDownload,
   FaUserCog,
   FaFolderOpen,
-  FaDatabase,
 } from "react-icons/fa"
 import { RiGitPullRequestFill } from "react-icons/ri"
 
@@ -36,16 +32,6 @@ function Aside() {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/departement-direction">
-              <FaLock /> Departement et direction
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard/materiels">
-              <FaTabletAlt /> Materiels
-            </Link>
-          </li>
-          <li>
             <Link to="/dashboard/prise-en-charge">
               <FaRegFileAlt /> Prise en charge
             </Link>
@@ -56,11 +42,6 @@ function Aside() {
             </Link>
           </li>
           <li>
-            <Link to="/dashboard/base-connaissance">
-              <FaDownload /> Base connaissance
-            </Link>
-          </li>
-          <li>
             <Link to="/dashboard/informaticien">
               <FaUserCog /> Informaticien
             </Link>
@@ -68,11 +49,6 @@ function Aside() {
           <li>
             <Link to="/dashboard/document">
               <FaFolderOpen /> Document
-            </Link>
-          </li>
-          <li>
-            <Link to="/dashboard/userdb">
-              <FaDatabase /> User DB
             </Link>
           </li>
         </ul>

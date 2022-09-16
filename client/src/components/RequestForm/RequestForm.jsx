@@ -47,9 +47,9 @@ function RequestForm({ setForceUpdate }) {
     const postForm = async () => {
       try {
         await axios.post(API_URI_POST, formData, config)
-        toast.success("Votre requete a été envoyé avec succès")
+        return toast.success("Votre requete a été envoyé avec succès")
       } catch (error) {
-        toast.error(error)
+        return toast.error(error)
       }
     }
     postForm()

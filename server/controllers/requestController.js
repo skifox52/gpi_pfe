@@ -1,12 +1,23 @@
 const RequestModel = require("../Models/requestModel")
 const expressAsyncHandler = require("express-async-handler")
 
-//Get all request
+//Get request by id
 exports.getRequest = expressAsyncHandler(async (req, res) => {
   try {
     const { id_util } = req.user[0]
     const [request, _] = await RequestModel.fetchRequest(id_util)
     res.status(200).json(request)
+  } catch (error) {
+    res.status(400)
+    throw new Error(error)
+  }
+})
+
+//Get all requests
+exports.getAllRequests = expressAsyncHandler(async (req, res) => {
+  try {
+    const [requests, _] = await RequestModel.fetchAllRequests()
+    res.status(200).json(requests)
   } catch (error) {
     res.status(400)
     throw new Error(error)

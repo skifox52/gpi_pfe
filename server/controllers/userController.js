@@ -34,7 +34,6 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
     const [user, _] = await UserModel.findById(id)
     res.status(200).json({
       Id: user[0].id_util,
-      Code_dep: user[0].code_dep,
       Nom: user[0].nom_util,
       Prenom: user[0].prenom_util,
       Email: user[0].email_util,

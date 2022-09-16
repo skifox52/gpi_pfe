@@ -10,7 +10,7 @@ class UserModel {
   //Find by Id
   static findById(id) {
     const query =
-      "SELECT id_util, code_dep, prenom_util, nom_util, email_util, teleph_mob_util, teleph_util FROM utilisateur WHERE id_util=?"
+      "SELECT id_util, prenom_util, nom_util, email_util, teleph_mob_util, teleph_util FROM utilisateur WHERE id_util=?"
     const result = db.execute(query, [id])
     return result
   }

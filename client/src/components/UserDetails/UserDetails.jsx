@@ -36,8 +36,6 @@ function UserDetails() {
       <article className="user-detais-card">
         <span>Identifiant : </span>
         <p>{user ? user.Id : "null"}</p>
-        <span>Code de département : </span>
-        <p>{user ? user.Code_dep ?? "null" : "null"}</p>
         <span>Nom : </span>
         <p>{user ? user.Nom : "null"}</p>
         <span>Prénom : </span>

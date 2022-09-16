@@ -1,0 +1,62 @@
+$secondary--color: #c2f9ff;
+$primary--color: rgba(21, 76, 90, 0.951);
+$font--color: #0d585f;
+
+.dashboard__request {
+  background-color: steelblue;
+  height: max-content;
+  color: $secondary--color;
+  background: $primary--color;
+  padding: 1em;
+  cursor: pointer;
+  border-radius: 5px 5px 45px 15px;
+  transition: all 150ms ease-in;
+  .preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-bottom: 0.6em;
+    span,
+    h3 {
+      letter-spacing: 1px;
+    }
+    .request__date,
+    .request__heure {
+      position: absolute;
+      font-size: 0.75em;
+      right: 10px;
+      top: 0px;
+    }
+    .request__heure {
+      top: 15px;
+    }
+  }
+  .full__content {
+    padding: 1em;
+    width: 100%;
+    border-top: 1px solid $secondary--color;
+    span {
+      font-size: 0.8em;
+      color: rgba(194, 249, 255, 0.7);
+      font-weight: 300;
+    }
+    p {
+      letter-spacing: 1px;
+      margin-bottom: 0.6em;
+      font-weight: 500;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &:hover {
+    background: $secondary--color;
+    color: $font--color;
+    .full__content {
+      border-top: 1px solid $font--color;
+      span {
+        color: rgba(13, 88, 95, 0.7);
+      }
+    }
+  }
+}

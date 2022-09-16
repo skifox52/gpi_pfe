@@ -43,6 +43,14 @@ class RequestModel {
     const requests = db.execute(query, [id])
     return requests
   }
+
+  //Fetch all requests
+  static fetchAllRequests() {
+    const query =
+      "select id_requete, nom_util, prenom_util, date_requete, type_requete, heure_requete, titre_requete, description_requete,urgence_requete, statut, id_util , nom_mat from requete, materiel, utilisateur where requete.id_utilisateur = utilisateur.id_util and requete.id_materiel = materiel.id_mat;"
+    const result = db.execute(query)
+    return result
+  }
 }
 
 module.exports = RequestModel

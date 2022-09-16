@@ -13,7 +13,7 @@ $background-primary: #0e323c;
 .aside {
   color: $font-primary;
   background: $background-primary;
-  width: 20vw;
+  width: 15vw;
   margin-block: auto;
   position: fixed;
   height: calc(100% - 2.5rem);
@@ -32,8 +32,8 @@ $background-primary: #0e323c;
       list-style: none;
       width: 100%;
       height: 100%;
-      transition: all 150ms ease-in;
-      padding-left: 0.55rem;
+      transition: all 150ms ease-in-out;
+      padding-left: 1.5em;
       border: 1px solid #0e1d25;
       a {
         text-decoration: none;
@@ -49,6 +49,9 @@ $background-primary: #0e323c;
       &:hover {
         cursor: pointer;
         color: #f0f0f0;
+        transform: scale(1.05);
+        font-size: 1.1em;
+        padding-left: 15%;
         background: hsl(185, 76%, 31%);
       }
     }
