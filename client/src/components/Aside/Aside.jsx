@@ -52,6 +52,8 @@ function Aside() {
             </Link>
           </li>
         </ul>
+
+        <p className="copy">SAYHI Abdelfattah &copy; 2022</p>
       </div>
     </>
   )

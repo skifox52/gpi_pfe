@@ -3,6 +3,7 @@ const {
   getRequest,
   postRequest,
   getAllRequests,
+  fetchByCat,
 } = require("../controllers/requestController")
 const protect = require("../middleware/ptotect")
 
