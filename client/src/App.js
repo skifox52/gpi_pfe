@@ -12,25 +12,33 @@ import MaterielCategorie from "./pages/MaterielCategorie/MaterielCategorie"
 import Informaticien from "./pages/Informaticien/Informaticien"
 import Document from "./pages/Document/Document"
 import UserHome from "./pages/UserHome/UserHome"
+import ProtectAdmin from "./ProtectAdmin"
+import ProtectUser from "./ProtectUser"
+import { useSelector } from "react-redux"
 import "react-confirm-alert/src/react-confirm-alert.css"
 
 function App() {
+  const role = useSelector((state) => state.auth.user?.role)
   const location = useLocation()
   return (
     <>
       <Routes location={location} key={location.key}>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="utilisateurs" element={<Utilisateur />} />
-          <Route path="statut-requete" element={<StatutRequete />} />
-          <Route path="requetes" element={<Requete />} />
-          <Route path="prise-en-charge" element={<PriseEnCharge />} />
-          <Route path="materiels-categorie" element={<MaterielCategorie />} />
-          <Route path="informaticien" element={<Informaticien />} />
-          <Route path="document" element={<Document />} />
-        </Route>
-        <Route path="/utilisateur" element={<UserHome />} />
         <Route path="/login" element={<Login />} />
+        <Route element={<ProtectAdmin role={role} />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="utilisateurs" element={<Utilisateur />} />
+            <Route path="statut-requete" element={<StatutRequete />} />
+            <Route path="requetes" element={<Requete />} />
+            <Route path="prise-en-charge" element={<PriseEnCharge />} />
+            <Route path="materiels-categorie" element={<MaterielCategorie />} />
+            <Route path="informaticien" element={<Informaticien />} />
+            <Route path="document" element={<Document />} />
+          </Route>
+        </Route>
+        <Route element={<ProtectUser role={role} />}>
+          <Route path="/utilisateur" element={<UserHome />} />
+        </Route>
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
 

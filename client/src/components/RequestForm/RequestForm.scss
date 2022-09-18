@@ -3,14 +3,12 @@ $primary--color: rgba(21, 76, 90, 0.951);
 $font--color: #0d585f;
 
 .request__form {
-  border: 1px solid $secondary--color;
+  border: 1px solid rgba(194, 249, 255, 0.4);
   color: $secondary--color;
   height: max-content;
   width: 50%;
   background: $primary--color;
   position: relative;
-  border-radius: 0 0 10px 10px;
-  padding: 0.5em 1em;
   transition: all 150ms ease-in;
   .down__arrow {
     position: absolute;
@@ -25,7 +23,7 @@ $font--color: #0d585f;
     cursor: pointer;
     font-weight: 400;
     letter-spacing: 1px;
-    padding-bottom: 0.5em;
+    padding: 0.5em 1em;
   }
   form {
     display: flex;

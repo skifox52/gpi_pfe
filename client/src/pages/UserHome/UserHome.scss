@@ -6,7 +6,8 @@ $background__primary: #0e1d25;
   height: 100vh;
   width: 100vw;
   display: flex;
-  padding-top: 2.5rem;
+  gap: 1em;
+  padding: 3.5em 1em 1em 1em;
   color: $font__clr;
   overflow-y: auto;
 }

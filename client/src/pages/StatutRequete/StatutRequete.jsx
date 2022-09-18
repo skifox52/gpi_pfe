@@ -1,5 +1,5 @@
 import "./StatutRequete.scss"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import DashboardSpinner from "../../components/DashboardSpinner/DashboardSpinner"
@@ -12,6 +12,9 @@ function StatutRequete() {
   const [state, setState] = useState("enattente")
   const [requests, setRequests] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const enattenteRef = useRef(null)
+  const accepterRef = useRef(null)
+  const refuserRef = useRef(null)
   //UseEffect
   useEffect(() => {
     const fetchRequests = async () => {
@@ -24,7 +27,22 @@ function StatutRequete() {
       }
     }
     fetchRequests()
-  }, [])
+    if (state === "enattente") {
+      accepterRef.current && accepterRef.current.classList.remove("active")
+      refuserRef.current && refuserRef.current.classList.remove("active")
+      enattenteRef.current && enattenteRef.current.classList.add("active")
+    }
+    if (state === "accepter") {
+      enattenteRef.current && enattenteRef.current.classList.remove("active")
+      refuserRef.current && refuserRef.current.classList.remove("active")
+      accepterRef.current && accepterRef.current.classList.add("active")
+    }
+    if (state === "refuser") {
+      accepterRef.current && accepterRef.current.classList.remove("active")
+      enattenteRef.current && enattenteRef.current.classList.remove("active")
+      refuserRef.current && refuserRef.current.classList.add("active")
+    }
+  }, [enattenteRef, accepterRef, refuserRef, state])
   const enAttente = [...requests].filter(
     (request) => request.statut === "En attente"
   )
@@ -39,7 +57,8 @@ function StatutRequete() {
     <div className="statut__requete">
       <div className="statut__container">
         <div
-          className="en__attente__container"
+          ref={enattenteRef}
+          className="en__attente__container active"
           onClick={(e) => {
             if (state === "enattente") return
             setState("enattente")
@@ -48,6 +67,7 @@ function StatutRequete() {
           <h3>En attente</h3>
         </div>
         <div
+          ref={accepterRef}
           className="accepter__container"
           onClick={(e) => {
             if (state === "accepter") return
@@ -57,6 +77,7 @@ function StatutRequete() {
           <h3>Accepter</h3>
         </div>
         <div
+          ref={refuserRef}
           className="refuser__container"
           onClick={(e) => {
             if (state === "refuser") return

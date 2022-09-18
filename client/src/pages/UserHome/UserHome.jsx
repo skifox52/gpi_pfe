@@ -27,12 +27,14 @@ function UserHome() {
   }, [isError, isLoading, user, message, navigate])
   if (isLoading) return <Spinner />
   return (
-    <div className="user-home">
+    <>
       <Navbar />
-      <UserDetails />
-      <RequestList forceUpdate={forceUpdate} />
-      <RequestForm setForceUpdate={setForceUpdate} />
-    </div>
+      <div className="user-home">
+        <UserDetails />
+        <RequestList forceUpdate={forceUpdate} />
+        <RequestForm setForceUpdate={setForceUpdate} />
+      </div>
+    </>
   )
 }
 
