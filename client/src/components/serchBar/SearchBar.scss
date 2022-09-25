@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
+  gap: 1em;
+  border-radius: 5px;
   border: 1px solid #c2f9ff;
   background: #0e323c;
   padding: 2em 1em;
@@ -37,7 +38,8 @@
     }
   }
   .add__container {
-    border-radius: 5px 5px 20px 20px;
+    border-radius: 5px;
+    border: 1px solid hsl(193, 62%, 25%);
     height: max-content;
     width: 100%;
     position: relative;
@@ -49,7 +51,7 @@
       font-size: 1em;
       width: 100%;
       cursor: pointer;
-      padding-block: 1.5em;
+      padding-block: 1em;
       border: none;
       overflow: hidden;
       background: inherit;
@@ -106,6 +108,11 @@
           }
         }
       }
+    }
+  }
+  .info__container {
+    h4 {
+      letter-spacing: 1px;
     }
   }
 }

@@ -43,9 +43,9 @@ function UserDetails() {
         <span>E-mail : </span>
         <p>{user ? user.Email : "null"}</p>
         <span>Numéro portable : </span>
-        <p>{user ? user.TelephM : "null"}</p>
+        <p>{user ? `0${user.TelephM}` : "null"}</p>
         <span>Numéro fix : </span>
-        <p>{user ? user.Teleph : "null"}</p>
+        <p>{user ? `0${user.Teleph}` : "null"}</p>
         <button
           onClick={(e) => {
             document.querySelector(".user-details").close()

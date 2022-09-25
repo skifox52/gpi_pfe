@@ -94,12 +94,12 @@ function StatutRequete() {
               <div key={request.id_requete} className="single">
                 <span>Identifiant requète</span>
                 <p>{request.id_requete}</p>
+                <span>Type requète</span>
+                <p>{request.type_requete}</p>
                 <span>Matériel</span>
                 <p>{request.nom_mat}</p>
                 <span>Titre reqète</span>
                 <p>{request.titre_requete}</p>
-                <span>Type requète</span>
-                <p>{request.type_requete}</p>
                 <span>Description requète</span>
                 <p>{request.description_requete}</p>
                 <span>Urgence requète</span>

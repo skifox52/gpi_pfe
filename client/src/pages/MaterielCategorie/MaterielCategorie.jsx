@@ -59,7 +59,7 @@ function MaterielCategorie() {
               }}
             >
               <h2>
-                Hardware{" "}
+                Hardware
                 {!hardware ? (
                   <AiOutlineArrowDown className="show__btn" />
                 ) : (
@@ -101,7 +101,7 @@ function MaterielCategorie() {
               }}
             >
               <h2>
-                Software{" "}
+                Software
                 {!software ? (
                   <AiOutlineArrowDown className="show__btn" />
                 ) : (
@@ -143,7 +143,7 @@ function MaterielCategorie() {
               }}
             >
               <h2>
-                Réseau{" "}
+                Réseau
                 {!reseau ? (
                   <AiOutlineArrowDown className="show__btn" />
                 ) : (

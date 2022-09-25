@@ -4,8 +4,6 @@ import { useSelector } from "react-redux"
 import { useEffect, useReducer } from "react"
 import { toast } from "react-toastify"
 import Spinner from "../../components/Spinner/Spinner"
-import Navbar from "../../components/Navbar/Navbar"
-import UserDetails from "../../components/UserDetails/UserDetails"
 import RequestForm from "../../components/RequestForm/RequestForm"
 import RequestList from "../../components/RequestList/RequestList"
 
@@ -28,9 +26,7 @@ function UserHome() {
   if (isLoading) return <Spinner />
   return (
     <>
-      <Navbar />
       <div className="user-home">
-        <UserDetails />
         <RequestList forceUpdate={forceUpdate} />
         <RequestForm setForceUpdate={setForceUpdate} />
       </div>

@@ -1,5 +1,5 @@
 $secondary--color: #c2f9ff;
-$primary--color: rgba(21, 76, 90, 0.951);
+$primary--color: #0e323c;
 $font--color: #0d585f;
 
 .spinner {
@@ -17,7 +17,7 @@ $font--color: #0d585f;
   justify-content: space-between;
   height: 100%;
   width: 100%;
-  gap: 4em;
+  gap: 2em;
   h1 {
     padding-top: 1.5em;
     font-weight: 300;
@@ -33,20 +33,21 @@ $font--color: #0d585f;
       display: flex;
       flex-direction: column;
       width: 70%;
-      gap: 2em;
+      gap: 1em;
       list-style: none;
       li {
         .single__categorie {
           background: $primary--color;
-          border-bottom: 1px solid $secondary--color;
+          border: 1px solid rgba(194, 249, 255, 0.4);
           position: relative;
-          padding: 1em;
+          border-radius: 0.25em;
+          padding: 0.65em;
           padding-left: 1.5em;
-          border-top-left-radius: 20px;
-          border-top-right-radius: 20px;
           transition: all 100ms ease-in;
-          font-weight: 400;
-          letter-spacing: 3px;
+          h2 {
+            font-weight: 400;
+            letter-spacing: 2px;
+          }
           .show__btn {
             position: absolute;
             right: 1em;

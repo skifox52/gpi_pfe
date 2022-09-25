@@ -59,9 +59,15 @@ function SearchBar({ users, changeState, searchInput }) {
   useEffect(() => {
     parent.current && autoAnimate(parent.current)
     searchInput(debounceValue)
-  }, [parent, form, debounceValue])
+  }, [parent, form, debounceValue, searchInput])
   return (
     <div className="search__bar">
+      <div className="info__container">
+        <h4>
+          Nombre d'utilisateurs:{" "}
+          <span style={{ color: "#befcff" }}>{users.length}</span>
+        </h4>
+      </div>
       <div className="input__container">
         <BsSearch className="search__icon" />
         <input
@@ -74,6 +80,7 @@ function SearchBar({ users, changeState, searchInput }) {
           maxLength={15}
         />
       </div>
+
       <div className="add__container" ref={parent}>
         <AiOutlineUserAdd className="add__icon" />
         <button
@@ -171,12 +178,6 @@ function SearchBar({ users, changeState, searchInput }) {
             </div>
           </form>
         )}
-      </div>
-      <div className="info__container">
-        <h4 style={{ letterSpacing: "1px" }}>
-          Nombre d'utilisateurs:{" "}
-          <span style={{ color: "#befcff" }}>{users.length}</span>
-        </h4>
       </div>
     </div>
   )

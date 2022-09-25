@@ -1,18 +1,17 @@
 .dashboard-spinner {
   z-index: 998;
-  background: #c1faff;
+  background: #0e1d25;
   position: absolute;
   inset: 0 0 0 15vw;
   display: flex;
   align-items: center;
   justify-content: center;
   max-height: 100%;
-  box-shadow: -2px -4px 10px inset #333, 2px 4px 10px inset #333;
   &::before {
     content: "";
-    width: 4vw;
+    width: 3vw;
     aspect-ratio: 1;
-    border: 0.2em solid #333;
+    border: 0.25em solid #00766f;
     position: absolute;
     animation: rotateRight 1500ms infinite;
   }
@@ -20,10 +19,10 @@
     content: "";
     width: 4vw;
     aspect-ratio: 1;
-    border: 0.15em solid #333;
+    border: 0.1em solid rgba(249, 248, 113, 0.5);
     transform: rotate(45deg);
     position: absolute;
-    animation: rotateLeft 500ms infinite;
+    animation: rotateLeft 1500ms infinite;
   }
 }
 

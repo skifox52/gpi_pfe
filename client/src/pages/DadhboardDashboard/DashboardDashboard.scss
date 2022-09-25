@@ -1,0 +1,37 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.2);
+
+.utilisateur {
+  grid-area: utilisateur;
+}
+.requete {
+  grid-area: requete;
+}
+.informaticien {
+  grid-area: informaticien;
+}
+
+.dashboard__dashboard {
+  padding: 1em;
+  color: $font--clr--primary;
+  height: 94vh;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "utilisateur requete"
+    "informaticien informaticien";
+  gap: 1em;
+  div {
+    background-color: $primary--clr;
+    width: 100%;
+    padding: 1em;
+    border-radius: 10px;
+    border: 1px solid $font--clr--secondary;
+    h3 {
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+  }
+}

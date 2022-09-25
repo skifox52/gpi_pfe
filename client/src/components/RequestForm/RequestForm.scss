@@ -1,10 +1,11 @@
 $secondary--color: #c2f9ff;
-$primary--color: rgba(21, 76, 90, 0.951);
+$primary--color: #0e323c;
 $font--color: #0d585f;
 
 .request__form {
   border: 1px solid rgba(194, 249, 255, 0.4);
   color: $secondary--color;
+  border-radius: 5px;
   height: max-content;
   width: 50%;
   background: $primary--color;
@@ -34,8 +35,8 @@ $font--color: #0d585f;
     padding: 1em;
     padding-top: 2em;
     .form__control {
-      width: 20rem;
-      margin-block: 0.25rem;
+      width: 20em;
+      margin-block: 0.25em;
       input,
       select,
       button {

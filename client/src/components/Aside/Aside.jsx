@@ -9,6 +9,7 @@ import {
   FaUserCog,
   FaFolderOpen,
 } from "react-icons/fa"
+import { BiHomeAlt } from "react-icons/bi"
 import { RiGitPullRequestFill } from "react-icons/ri"
 
 function Aside() {
@@ -16,6 +17,11 @@ function Aside() {
     <>
       <div className="aside">
         <ul>
+          <li>
+            <Link to="/dashboard/">
+              <BiHomeAlt /> Accueil
+            </Link>
+          </li>
           <li>
             <Link to="/dashboard/utilisateurs">
               <FaUser /> Utilisateurs
