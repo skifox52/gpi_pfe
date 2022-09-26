@@ -41,7 +41,6 @@ function InfoFofm() {
       })
       .catch((err) => toast.error(err))
   }
-  console.log(formData)
   useEffect(() => {
     parent.current && autoAnimate(parent.current)
   }, [parent, form, config])
