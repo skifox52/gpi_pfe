@@ -73,13 +73,8 @@ function RequestForm({ setForceUpdate }) {
       {isOpen && (
         <form onSubmit={onSubmit} ref={form}>
           <div className="form__control">
-            <select
-              name="id_mat"
-              onChange={onChange}
-              required
-              defaultValue="default"
-            >
-              <option disabled hidden value="default">
+            <select name="id_mat" onChange={onChange} required defaultValue="">
+              <option disabled hidden value="">
                 Sélectionnez un materiel
               </option>
               {materiel.map((mat) => (
@@ -94,9 +89,9 @@ function RequestForm({ setForceUpdate }) {
               name="type_requete"
               onChange={onChange}
               required
-              defaultValue="default"
+              defaultValue=""
             >
-              <option disabled hidden value="default">
+              <option disabled hidden value="">
                 Type de requète
               </option>
               <option value="Réparation">Réparation</option>
@@ -104,13 +99,8 @@ function RequestForm({ setForceUpdate }) {
             </select>
           </div>
           <div className="form__control">
-            <select
-              name="urgence"
-              onChange={onChange}
-              required
-              defaultValue="default"
-            >
-              <option disabled hidden value="default">
+            <select name="urgence" onChange={onChange} required defaultValue="">
+              <option disabled hidden value="">
                 Urgence
               </option>
               <option value="haute">Haute</option>

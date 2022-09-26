@@ -6,6 +6,7 @@ const userRouter = require("./routes/userRouter")
 const requestRouter = require("./routes/requestRouter")
 const materielRouter = require("./routes/materielRoute")
 const cors = require("cors")
+const InforRouter = require("./routes/infoRoute")
 
 const app = express()
 
@@ -27,7 +28,7 @@ app.use("/auth", authRouter)
 app.use("/users", userRouter)
 app.use("/request", requestRouter)
 app.use("/materiel", materielRouter)
-
+app.use("/info", InforRouter)
 // Home page
 
 app.get("/", (req, res) => {
