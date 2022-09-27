@@ -53,7 +53,6 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
     let { nom, prenom, email, tel_mob, tel, role, mdp } = req.body
 
     if (!mdp) {
-      console.log("hello")
       const [user, _] = await UserModel.updateUserNoPassword(id, {
         nom,
         prenom,

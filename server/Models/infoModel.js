@@ -28,6 +28,35 @@ class InfoModel {
     const result = db.execute(query)
     return result
   }
+
+  //Update Info
+  static updateInfo(
+    cat_info,
+    nom_info,
+    email_info,
+    teleph_info,
+    groupe_info,
+    id
+  ) {
+    const query =
+      "UPDATE informaticien SET categorie_informaticien=?, nom_informaticien=?, email_info=?, telephone_info=?, groupe_info=? WHERE id_info=?"
+    const result = db.execute(query, [
+      cat_info,
+      nom_info,
+      email_info,
+      teleph_info,
+      groupe_info,
+      id,
+    ])
+    return result
+  }
+
+  //Delete Info
+  static deleteInfo(id) {
+    const query = "DELETE FROM informaticien WHERE id_info=?"
+    const result = db.execute(query, [id])
+    return result
+  }
 }
 
 module.exports = InfoModel

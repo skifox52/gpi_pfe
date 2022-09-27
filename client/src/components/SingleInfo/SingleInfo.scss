@@ -1,0 +1,61 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.2);
+
+.single__info {
+  background: $primary--clr;
+  color: $font--clr--primary;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border: 1px solid $font--clr--secondary;
+  border-radius: 10px;
+  .single__container {
+    height: 4em;
+    padding-block: 0.35em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    input,
+    select {
+      width: 80%;
+      padding: 0.2em;
+      background: transparent;
+      outline: none;
+      border: 1px solid $font--clr--secondary;
+      color: $font--clr--primary;
+    }
+    select {
+      color: $primary--clr;
+      background: $font--clr--primary;
+    }
+    span {
+      font-weight: 300;
+      font-size: 0.7em;
+      opacity: 0.7;
+    }
+    h4 {
+      letter-spacing: 1px;
+    }
+    button {
+      width: 60%;
+      padding: 0.2em;
+      border: 1px solid $font--clr--secondary;
+      background: $primary--clr;
+      color: $font--clr--primary;
+      transition: all 100ms ease-in;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        letter-spacing: 1px;
+        background-color: hsl(201, 45%, 9.5%);
+      }
+    }
+    .delete__btn:hover {
+      background: rgb(61, 3, 3);
+    }
+  }
+}

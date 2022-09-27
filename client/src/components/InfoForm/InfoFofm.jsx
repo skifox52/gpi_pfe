@@ -6,7 +6,7 @@ import axios from "axios"
 import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
 
-function InfoFofm() {
+function InfoFofm({ changeState }) {
   const parent = useRef(null)
   const form = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -35,6 +35,7 @@ function InfoFofm() {
     axios
       .post(API_URI, formData, config)
       .then((res) => {
+        changeState()
         toast.success("Informaticien ajouter")
         setFormData(initialFormValue)
         form.current.reset()

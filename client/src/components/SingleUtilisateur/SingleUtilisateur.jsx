@@ -37,7 +37,28 @@ function SingleUtilisateur({ user, changeState }) {
     //Update user
     const updateUser = async () => {
       try {
-        if (JSON.stringify(formData) === JSON.stringify(initialState)) {
+        if (
+          !formData["email"]
+            .toString()
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+        ) {
+          return toast.warn("Adress mail non valide")
+        }
+        if (
+          formData["nom"] === "" ||
+          formData["prenom"] === "" ||
+          formData["tel"] === "" ||
+          formData["tel_mob"] === ""
+        ) {
+          return toast.warn("Remplissez vos champs")
+        }
+        if (
+          JSON.stringify(formData).toLowerCase() ===
+          JSON.stringify(initialState).toLowerCase()
+        ) {
           setModifier(false)
           return toast.warning("Aucun élément n'a été modifié")
         }
@@ -49,7 +70,6 @@ function SingleUtilisateur({ user, changeState }) {
             "Le mot de passe doit contenir au minimum 8 caractères!"
           )
         }
-        console.log(formData)
         await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()
@@ -81,7 +101,6 @@ function SingleUtilisateur({ user, changeState }) {
         <input
           type="text"
           name="nom"
-          maxLength={15}
           value={formData["nom"]}
           onChange={onChange}
         />
@@ -93,7 +112,6 @@ function SingleUtilisateur({ user, changeState }) {
         <input
           type="text"
           name="prenom"
-          maxLength={15}
           value={formData["prenom"]}
           onChange={onChange}
         />
@@ -113,7 +131,6 @@ function SingleUtilisateur({ user, changeState }) {
       {modifier ? (
         <input
           type="email"
-          maxLength={50}
           name="email"
           value={formData["email"]}
           onChange={onChange}
@@ -136,7 +153,7 @@ function SingleUtilisateur({ user, changeState }) {
       <span>Téléphone portable</span>
       {modifier ? (
         <input
-          type="tel"
+          type="number"
           name="tel_mob"
           value={formData["tel_mob"]}
           onChange={onChange}
@@ -147,7 +164,7 @@ function SingleUtilisateur({ user, changeState }) {
       <span>Téléphone fix</span>
       {modifier ? (
         <input
-          type="tel"
+          type="number"
           name="tel"
           value={formData["tel"]}
           onChange={onChange}
@@ -184,7 +201,6 @@ function SingleUtilisateur({ user, changeState }) {
             {userId !== user.Id && (
               <button
                 className="delete__btn"
-                ref={handleDelete}
                 onClick={(e) => {
                   confirmAlert({
                     title: "Supprimer un utilisateur!",
