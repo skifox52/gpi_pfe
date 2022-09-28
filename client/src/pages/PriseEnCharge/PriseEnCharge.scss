@@ -1,0 +1,70 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.1);
+
+.prise__en__charge {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  color: $font--clr--primary;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  .req__container,
+  .info__container {
+    background: $primary--clr;
+    padding: 1em;
+    height: 30%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    border: 1px solid $font--clr--secondary;
+    h1 {
+      font-weight: 200;
+      letter-spacing: 1px;
+      display: block;
+    }
+    select {
+      border: none;
+      padding: 1em;
+      border-radius: 5px;
+      color: $primary--clr;
+      font-size: 1.1em;
+      width: 80%;
+      outline: none;
+      font-weight: 800;
+    }
+  }
+  .buttons__container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      width: 50%;
+      padding: 1.5em 0.5em;
+      cursor: pointer;
+      border-radius: 10px;
+      font-weight: 300;
+      font-size: 1.05em;
+      border: 1px solid $font--clr--secondary;
+      background: $primary--clr;
+      color: $font--clr--primary;
+      outline: none;
+      transition: all 100ms ease-in;
+      &:hover {
+        letter-spacing: 2px;
+        font-weight: 600;
+        background-color: hsl(201, 45%, 9.5%);
+      }
+    }
+    .refuser:hover {
+      background: rgb(61, 3, 3);
+    }
+  }
+}

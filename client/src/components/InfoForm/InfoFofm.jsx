@@ -103,7 +103,9 @@ function InfoFofm({ changeState }) {
               required
               onChange={onChange}
             >
-              <option value="">Groupe</option>
+              <option value="" hidden disabled>
+                Groupe
+              </option>
               <option value="ISI">ISI</option>
             </select>
           </div>
