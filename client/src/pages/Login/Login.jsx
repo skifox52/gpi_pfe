@@ -15,7 +15,6 @@ function Login() {
     password: "",
   })
   const { id: userId, password: userPassword } = formData
-
   //Get AUTH-STATE
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -50,9 +49,10 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
     if (!userId || !userPassword) {
-      return toast.info("Remplissez vos champs...")
+      return toast.warning("Remplissez vos champs...")
     }
-
+    if (formData["id"].startsWith("inf")) {
+    }
     dispatch(login(formData))
   }
 

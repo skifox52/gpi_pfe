@@ -40,6 +40,13 @@ $font--color: #0d585f;
         @include fontWeight();
       }
     }
+    .en__cours__container {
+      width: 100%;
+      @include borderContainer();
+      h3 {
+        @include fontWeight();
+      }
+    }
     .accepter__container {
       width: 100%;
       @include borderContainer();

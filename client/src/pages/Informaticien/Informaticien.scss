@@ -3,6 +3,11 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
+  h1 {
+    letter-spacing: 1px;
+    font-weight: 200;
+    text-align: center;
+  }
   .list__info {
     display: flex;
     flex-direction: column;

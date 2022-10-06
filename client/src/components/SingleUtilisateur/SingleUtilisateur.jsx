@@ -123,6 +123,7 @@ function SingleUtilisateur({ user, changeState }) {
         <select name="role" value={formData["role"]} onChange={onChange}>
           <option value="admin">Administrateur</option>
           <option value="utilisateur">Utilisateur</option>
+          <option value="informaticien">Informaticien</option>
         </select>
       ) : (
         <p>{user.Role.toUpperCase()}</p>

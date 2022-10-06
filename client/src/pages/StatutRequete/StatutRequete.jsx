@@ -15,6 +15,7 @@ function StatutRequete() {
   const enattenteRef = useRef(null)
   const accepterRef = useRef(null)
   const refuserRef = useRef(null)
+  const encoursRef = useRef(null)
   //UseEffect
   useEffect(() => {
     const fetchRequests = async () => {
@@ -30,19 +31,28 @@ function StatutRequete() {
     if (state === "enattente") {
       accepterRef.current && accepterRef.current.classList.remove("active")
       refuserRef.current && refuserRef.current.classList.remove("active")
+      encoursRef.current && encoursRef.current.classList.remove("active")
       enattenteRef.current && enattenteRef.current.classList.add("active")
     }
     if (state === "accepter") {
       enattenteRef.current && enattenteRef.current.classList.remove("active")
       refuserRef.current && refuserRef.current.classList.remove("active")
+      encoursRef.current && encoursRef.current.classList.remove("active")
       accepterRef.current && accepterRef.current.classList.add("active")
     }
     if (state === "refuser") {
       accepterRef.current && accepterRef.current.classList.remove("active")
       enattenteRef.current && enattenteRef.current.classList.remove("active")
+      encoursRef.current && encoursRef.current.classList.remove("active")
       refuserRef.current && refuserRef.current.classList.add("active")
     }
-  }, [enattenteRef, accepterRef, refuserRef, state])
+    if (state === "encours") {
+      accepterRef.current && accepterRef.current.classList.remove("active")
+      enattenteRef.current && enattenteRef.current.classList.remove("active")
+      refuserRef.current && refuserRef.current.classList.remove("active")
+      encoursRef.current && encoursRef.current.classList.add("active")
+    }
+  }, [enattenteRef, accepterRef, refuserRef, encoursRef, state])
   const enAttente = [...requests].filter(
     (request) => request.statut === "En attente"
   )
@@ -51,6 +61,9 @@ function StatutRequete() {
   )
   const accepter = [...requests].filter(
     (request) => request.statut === "Accepter"
+  )
+  const encours = [...requests].filter(
+    (request) => request.statut === "En cours"
   )
   if (isLoading) return <DashboardSpinner />
   return (
@@ -65,6 +78,16 @@ function StatutRequete() {
           }}
         >
           <h3>En attente</h3>
+        </div>
+        <div
+          ref={encoursRef}
+          className="en__cours__container"
+          onClick={(e) => {
+            if (state === "encours") return
+            setState("encours")
+          }}
+        >
+          <h3>En cours de traitement</h3>
         </div>
         <div
           ref={accepterRef}
@@ -126,9 +149,28 @@ function StatutRequete() {
               </div>
             ))}
           </>
-        ) : (
+        ) : state === "accepter" ? (
           <>
             {accepter.map((request) => (
+              <div key={request.id_requete} className="single">
+                <span>Identifiant requète</span>
+                <p>{request.id_requete}</p>
+                <span>Matériel</span>
+                <p>{request.nom_mat}</p>
+                <span>Titre reqète</span>
+                <p>{request.titre_requete}</p>
+                <span>Type requète</span>
+                <p>{request.type_requete}</p>
+                <span>Description requète</span>
+                <p>{request.description_requete}</p>
+                <span>Urgence requète</span>
+                <p>{request.urgence_requete}</p>
+              </div>
+            ))}
+          </>
+        ) : (
+          <>
+            {encours.map((request) => (
               <div key={request.id_requete} className="single">
                 <span>Identifiant requète</span>
                 <p>{request.id_requete}</p>

@@ -1,19 +1,25 @@
-import InfoFofm from "../../components/InfoForm/InfoFofm"
 import "./Informaticien.scss"
 import axios from "axios"
 import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { toast } from "react-toastify"
 import DashboardSpinner from "../../components/DashboardSpinner/DashboardSpinner"
 import SingleInfo from "../../components/SingleInfo/SingleInfo"
 
 function Informaticien() {
-  const API_URI = "/info"
+  const API_URI = "/users/all"
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const [info, setInfo] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const cancelToken = axios.CancelToken.source()
+  const infos = useMemo(
+    () =>
+      info.filter((inf) => {
+        return inf.Role.toLowerCase() === "informaticien"
+      }),
+    [info]
+  )
   //State
   const [state, setState] = useState(false)
   const changeState = () => {
@@ -40,12 +46,10 @@ function Informaticien() {
   if (isLoading) return <DashboardSpinner />
   return (
     <div className="informaticien__container">
-      <div className="add__info">
-        <InfoFofm changeState={changeState} />
-      </div>
+      <h1>Informaticiens</h1>
       <div className="list__info">
-        {info.map((inf) => (
-          <SingleInfo inf={inf} key={inf.id_info} changeState={changeState} />
+        {infos.map((inf) => (
+          <SingleInfo inf={inf} key={inf.Id} changeState={changeState} />
         ))}
       </div>
     </div>
