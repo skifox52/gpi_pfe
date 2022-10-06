@@ -19,25 +19,25 @@ function SingleInfo({ inf, changeState }) {
   const cancelToken = axios.CancelToken.source()
 
   useEffect(() => {
+    const countRequest = axios.get(API_URI, config, {
+      cancelToken: cancelToken.token,
+    })
+    const detailsRequest = axios.get(DETAILS_URI, config, {
+      cancelToken: cancelToken.token,
+    })
     axios
-      .get(API_URI, config, { cancelToken: cancelToken.token })
-      .then((response) => {
-        setCount(response.data[0]["COUNT(*)"])
+      .all([countRequest, detailsRequest])
+      .then(([res1, res2]) => {
+        setCount(res1.data[0]["COUNT(*)"])
+        setDetails(res2.data)
       })
       .catch((err) => {
-        if (axios.isCancel()) console.log("canceled")
+        if (axios.isCancel()) {
+          console.log("canceled")
+        }
         toast.error(err)
       })
 
-    axios
-      .get(DETAILS_URI, config, { cancelToken: cancelToken.token })
-      .then((response) => {
-        setDetails(response.data)
-      })
-      .catch((err) => {
-        if (axios.isCancel()) console.log("canceled")
-        toast.error(err)
-      })
     parent.current && autoAnimate(parent.current)
 
     return () => {
@@ -46,8 +46,6 @@ function SingleInfo({ inf, changeState }) {
       setDetails([])
     }
   }, [parent])
-  console.log(details)
-
   return (
     <div className="single__info" ref={parent}>
       <div className="container" onClick={(e) => setIsOpen(!isOpen)}>
@@ -80,7 +78,53 @@ function SingleInfo({ inf, changeState }) {
           <h4>{count ?? <span>Loading...</span>}</h4>
         </div>
       </div>
-      {isOpen && <div className="info__details">hello world</div>}
+      {isOpen && (
+        <div className="info__details__container">
+          {details.length > 0 ? (
+            details.map((det) => (
+              <div className="info__details" key={det.id_accorder}>
+                <div className="single__detail">
+                  <span>Id requète</span>
+                  <h5>{det.id_requete}</h5>
+                </div>
+                <div className="single__detail">
+                  <span>Date et heure d'attribution</span>
+                  <h5>
+                    {det.date_acc.split("").splice(0, 10)}{" "}
+                    {det.date_acc.split("").splice(11, 8)}
+                  </h5>
+                </div>
+                <div className="single__detail">
+                  <span>Utilisateur</span>
+                  <h5>
+                    {det.nom_util} {det.prenom_util} [{det.role}]
+                  </h5>
+                </div>
+                <div className="single__detail">
+                  <span>Statut de requète</span>
+                  <h5>{det.statut}</h5>
+                </div>
+                <div className="single__detail">
+                  <span>Type de requète</span>
+                  <h5>{det.type_requete}</h5>
+                </div>
+                <div className="single__detail">
+                  <span>Urgence de requète</span>
+                  <h5>{det.urgence_requete}</h5>
+                </div>
+                <div className="single__detail">
+                  <span>Date et heure de requète</span>
+                  <h5>
+                    {det.date_requete.slice(0, 10)} {det.heure_requete}
+                  </h5>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Aucune requête n'a été attribuée!</p>
+          )}
+        </div>
+      )}
     </div>
   )
 }

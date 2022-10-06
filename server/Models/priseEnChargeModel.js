@@ -7,7 +7,7 @@ class PriseEnCharge {
   }
 
   save() {
-    const query = "INSERT INTO accorder(id_req,id_info) VALUES(?,?)"
+    const query = "INSERT INTO accorder(id_requete,id_info) VALUES(?,?)"
     const result = db.execute(query, [this.req, this.info])
     return result
   }
@@ -27,7 +27,7 @@ class PriseEnCharge {
 
   static getInfo() {
     const query =
-      "SELECT id_info, categorie_informaticien, nom_informaticien from informaticien"
+      "SELECT id_util,nom_util, prenom_util from utilisateur where role='informaticien'"
     const result = db.execute(query)
     return result
   }

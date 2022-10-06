@@ -20,7 +20,7 @@ class Accorder {
 
   static getDetails(id) {
     const query =
-      "SELECT requete.id_requete, nom_mat, nom_util, prenom_util, role, type_requete, date_requete, heure_requete,date_acc, titre_requete, urgence_requete, statut FROM requete, utilisateur ,materiel, accorder WHERE accorder.id_requete=requete.id_requete AND accorder.id_info = utilisateur.id_util AND materiel.id_mat = requete.id_materiel AND id_info=?"
+      "SELECT id_accorder, requete.id_requete, nom_mat, nom_util, prenom_util, role, type_requete, date_requete, heure_requete,date_acc, urgence_requete, statut FROM requete, utilisateur ,materiel, accorder WHERE accorder.id_requete=requete.id_requete AND accorder.id_info = utilisateur.id_util AND materiel.id_mat = requete.id_materiel AND id_info=?"
     const result = db.execute(query, [id])
     return result
   }

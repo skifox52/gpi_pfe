@@ -7,6 +7,7 @@ class UserModel {
     const result = db.execute(query)
     return result
   }
+
   //Find by Id
   static findById(id) {
     const query =

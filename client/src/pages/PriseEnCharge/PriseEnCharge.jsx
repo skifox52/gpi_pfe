@@ -108,10 +108,8 @@ function PriseEnCharge() {
             Choisissez un informaticien
           </option>
           {info.map((info) => (
-            <option value={info.id_info} key={info.id_info}>
-              {info.id_info} - {info.nom_informaticien.toUpperCase()} {"[ "}
-              {info.categorie_informaticien}
-              {" ]"}
+            <option value={info.id_util} key={info.id_util}>
+              {info.id_util} - {info.nom_util.toUpperCase()} {info.prenom_util}
             </option>
           ))}
         </select>
