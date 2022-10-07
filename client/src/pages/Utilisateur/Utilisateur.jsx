@@ -59,7 +59,11 @@ function Utilisateur() {
             return user
         })
         .map((user, i) => (
-          <SingleUtilisateur user={user} key={i} changeState={changeState} />
+          <SingleUtilisateur
+            user={user}
+            key={user.Id}
+            changeState={changeState}
+          />
         ))}
     </div>
   )

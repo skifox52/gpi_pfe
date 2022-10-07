@@ -34,6 +34,9 @@ function Login() {
     if ((isSuccess || user) && user.role === "utilisateur") {
       navigate("/utilisateur")
     }
+    if ((isSuccess || user) && user.role === "informaticien") {
+      navigate("/informaticien")
+    }
     dispatch(reset())
   }, [user, isSuccess, isError, message, dispatch, navigate])
 
@@ -50,8 +53,6 @@ function Login() {
     e.preventDefault()
     if (!userId || !userPassword) {
       return toast.warning("Remplissez vos champs...")
-    }
-    if (formData["id"].startsWith("inf")) {
     }
     dispatch(login(formData))
   }

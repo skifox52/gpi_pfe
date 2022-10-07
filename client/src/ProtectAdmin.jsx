@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom"
 
 const useProtectAdmin = (user) => {
-  const isAdmin = user === "admin" ? true : false
+  const isAdmin = user?.toLowerCase() === "admin" ? true : false
   return isAdmin
 }
 

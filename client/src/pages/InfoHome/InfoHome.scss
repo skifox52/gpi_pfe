@@ -1,0 +1,21 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.2);
+
+.info__home {
+  padding-top: 2.5em;
+  background: $primary--clr;
+  height: 100vh;
+  color: $font--clr--primary;
+  .info__container {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    h1 {
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+  }
+}

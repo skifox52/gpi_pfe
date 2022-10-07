@@ -14,7 +14,6 @@ function SingleUtilisateur({ user, changeState }) {
   const userId = useSelector((state) => state.auth.user?.userId)
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
-
   const initialState = {
     nom: user.Nom,
     prenom: user.Prénom,
@@ -90,7 +89,7 @@ function SingleUtilisateur({ user, changeState }) {
       }
     }
     handleDelete.current = deleteUser
-  }, [formData, modifier, user, handleClick, handleDelete])
+  }, [formData, initialState, modifier, user, handleClick, handleDelete])
 
   return (
     <article className="single-user" key={user.id_util + 1}>

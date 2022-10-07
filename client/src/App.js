@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import ProtectUser from "./ProtectUser"
 import ProtectAdmin from "./ProtectAdmin"
+import ProtectInfo from "./ProtectInfo"
 import { useSelector } from "react-redux"
 import "react-confirm-alert/src/react-confirm-alert.css"
 import "react-toastify/dist/ReactToastify.css"
@@ -27,6 +28,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"))
 const DashboardDashboard = lazy(() =>
   import("./pages/DadhboardDashboard/DashboardDashboard")
 )
+const InfoHome = lazy(() => import("./pages/InfoHome/InfoHome"))
 
 function App() {
   const role = useSelector((state) => state.auth.user?.role)
@@ -131,7 +133,17 @@ function App() {
             }
           />
         </Route>
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route element={<ProtectInfo role={role} />}>
+          <Route
+            path="/informaticien"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <InfoHome />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
 
       <ToastContainer />

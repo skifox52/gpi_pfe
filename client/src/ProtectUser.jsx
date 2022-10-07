@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom"
 
 const useProtectUser = (user) => {
-  const isUser = user === "utilisateur" ? true : false
+  const isUser = user?.toLowerCase() === "utilisateur" ? true : false
   return isUser
 }
 
