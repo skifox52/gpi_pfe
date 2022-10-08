@@ -1,10 +1,10 @@
 $primary--clr: hsl(201, 45%, 6.5%);
 $font--clr--primary: rgba(240, 240, 240, 0.9);
-$font--clr--secondary: rgba(240, 240, 240, 0.2);
+$font--clr--secondary: rgba(240, 240, 240, 0.4);
 
 .info__home {
   padding-top: 2.5em;
-  background: $primary--clr;
+  background: #0e1d25;
   height: 100vh;
   color: $font--clr--primary;
   .info__container {
@@ -16,6 +16,36 @@ $font--clr--secondary: rgba(240, 240, 240, 0.2);
     h1 {
       font-weight: 300;
       letter-spacing: 2px;
+    }
+    .request__container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      .single__request {
+        border: 1px solid $font--clr--secondary;
+        border-radius: 5px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: $primary--clr;
+        justify-content: space-around;
+        padding: 0.7em;
+        .item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.25em;
+          span {
+            font-size: 0.8em;
+            letter-spacing: 1px;
+            color: $font--clr--secondary;
+          }
+          h4 {
+            font-weight: 400;
+          }
+        }
+      }
     }
   }
 }

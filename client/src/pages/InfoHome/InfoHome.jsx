@@ -43,7 +43,43 @@ function InfoHome() {
           {req.length > 0
             ? req.map((r) => (
                 <div className="single__request" key={r.id_accorder}>
-                  {r.id_accorder}
+                  <div className="first__item">
+                    <h4>{r.id_accorder}</h4>
+                    <span>{r.date_acc}</span>
+                  </div>
+                  <div className="item">
+                    <span>Id requète</span>
+                    <h4>{r.id_requete}</h4>
+                  </div>
+                  <div className="item">
+                    <span>Nom et prénom d'utilisateur</span>
+                    <h4>
+                      {r.nom_util} {r.prenom_util} [ {r.role} ]
+                    </h4>
+                  </div>
+                  <div className="item">
+                    <span>Date et heure requète</span>
+                    <h4>
+                      {r.date_requete.split("").splice(0, 10)}{" "}
+                      {r.date_requete.split("").splice(11, 5)}
+                    </h4>
+                  </div>
+                  <div className="item">
+                    <span>Type de requète</span>
+                    <h4>{r.type_requete}</h4>
+                  </div>
+                  <div className="item">
+                    <span>Matériel</span>
+                    <h4>{r.nom_mat}</h4>
+                  </div>
+                  <div className="item">
+                    <span>Urgence requète</span>
+                    <h4>{r.urgence_requete}</h4>
+                  </div>
+                  <div className="item">
+                    <span>Statut requète</span>
+                    <h4>{r.statut}</h4>
+                  </div>
                 </div>
               ))
             : "Aucune requète assignée"}
