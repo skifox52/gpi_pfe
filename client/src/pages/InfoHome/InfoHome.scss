@@ -22,30 +22,6 @@ $font--clr--secondary: rgba(240, 240, 240, 0.4);
       display: flex;
       flex-direction: column;
       gap: 0.5em;
-      .single__request {
-        border: 1px solid $font--clr--secondary;
-        border-radius: 5px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        background: $primary--clr;
-        justify-content: space-around;
-        padding: 0.7em;
-        .item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0.25em;
-          span {
-            font-size: 0.8em;
-            letter-spacing: 1px;
-            color: $font--clr--secondary;
-          }
-          h4 {
-            font-weight: 400;
-          }
-        }
-      }
     }
   }
 }

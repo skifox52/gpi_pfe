@@ -1,0 +1,72 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.4);
+
+.single__request {
+  border: 1px solid $font--clr--secondary;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: $primary--clr;
+  justify-content: space-around;
+  padding: 0.7em;
+  .first__item {
+    padding-right: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.2em;
+    border-right: 1px solid $font--clr--secondary;
+    h4 {
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+    span {
+      font-size: 0.8em;
+      color: $font--clr--secondary;
+      font-weight: 300;
+    }
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25em;
+    span {
+      font-size: 0.8em;
+      letter-spacing: 1px;
+      color: $font--clr--secondary;
+    }
+    h4 {
+      font-weight: 400;
+    }
+  }
+  .button__container {
+    @extend .item;
+    display: flex;
+    flex-direction: row;
+    gap: 0.25em;
+    button {
+      padding: 0.7em;
+      border: 1px solid hsl(0, 0%, 15%);
+      outline: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: transparent;
+      color: hsl(0, 0%, 70%);
+      font-size: 1.01em;
+      font-weight: 400;
+      transition: all 100ms ease-in;
+      &:hover {
+        transform: translateY(1px);
+        background: hsl(201, 45%, 10%);
+      }
+    }
+    .annuler:hover {
+      background: rgb(59, 6, 6);
+      transform: translateY(1px);
+    }
+  }
+}
