@@ -103,8 +103,9 @@ function RequestForm({ setForceUpdate }) {
               <option disabled hidden value="">
                 Urgence
               </option>
-              <option value="haute">Haute</option>
               <option value="basse">Basse</option>
+              <option value="moyenne">Moyenne</option>
+              <option value="haute">Haute</option>
             </select>
           </div>
           <div className="form__control">

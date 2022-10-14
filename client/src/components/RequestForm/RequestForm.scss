@@ -42,15 +42,19 @@ $font--color: #0d585f;
       button {
         outline: none;
         color: $secondary--color;
+        border-radius: 1em;
         border: 1px solid $secondary--color;
         font-weight: 400;
         font-size: 1.1rem;
         width: 100%;
-        padding: 1rem;
+        padding: 1em;
         background: transparent;
         &::placeholder {
           color: $secondary--color;
         }
+      }
+      select:hover {
+        cursor: pointer;
       }
 
       button {

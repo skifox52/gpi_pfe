@@ -1,5 +1,5 @@
 import "./RequestList.scss"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useMemo } from "react"
 import { toast } from "react-toastify"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
 import autoAnimate from "@formkit/auto-animate"
@@ -29,10 +29,13 @@ function RequestList({ forceUpdate }) {
       setRequest([])
     }
   }, [parent, forceUpdate])
-  const sortedRequests =
-    request.length > 0
-      ? request.sort((a, b) => b.id_requete - a.id_requete)
-      : []
+  const sortedRequests = useMemo(() => {
+    if (request.length > 0) {
+      return request.sort((a, b) => b.id_requete - a.id_requete)
+    } else {
+      return []
+    }
+  }, [request])
   return (
     <div className="request__list" ref={parent}>
       <h2
@@ -53,22 +56,28 @@ function RequestList({ forceUpdate }) {
           {request.length > 0 ? (
             sortedRequests.map((req) => (
               <div className="single__request" key={req.id_requete + 1}>
-                <span>Matériel: </span>
-                <h3>{req.nom_mat}</h3>
-                <span>Type de requete: </span>
-                <h3>{req.type_requete}</h3>
-                <span>Statut requete: </span>
-                <h3
-                  style={
-                    req.statut === "En attente"
-                      ? { color: "#D8B635" }
-                      : req.statut === "Refuser"
-                      ? { color: "#D84635" }
-                      : { color: "#35D888" }
-                  }
-                >
-                  {req.statut}
-                </h3>
+                <div className="container">
+                  <span>Matériel: </span>
+                  <h3>{req.nom_mat}</h3>
+                </div>
+                <div className="container">
+                  <span>Type de requete: </span>
+                  <h3>{req.type_requete}</h3>
+                </div>
+                <div className="container">
+                  <span>Statut requete: </span>
+                  <h3
+                    style={
+                      req.statut === "En attente"
+                        ? { color: "#D8B635" }
+                        : req.statut === "Refuser"
+                        ? { color: "#D84635" }
+                        : { color: "#35D888" }
+                    }
+                  >
+                    {req.statut}
+                  </h3>
+                </div>
                 <p>{req.date_requete.split("T")[0]}</p>
                 <p>{req.heure_requete}</p>
               </div>
