@@ -17,6 +17,8 @@ exports.fetchUsers = expressAsyncHandler(async (req, res) => {
         Téléphone: user.teleph_util,
         Téléphone_portable: user.teleph_mob_util,
         Role: user.role,
+        Code_dep: user.code_departement,
+        Departement: user.designation_departement,
       })
     })
     res.status(200).json(allUsers)
@@ -39,6 +41,9 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
       Email: user[0].email_util,
       TelephM: user[0].teleph_mob_util,
       Teleph: user[0].teleph_util,
+      Role: user[0].role,
+      Code_dep: user[0].code_departement,
+      Departement: user[0].departement,
     })
   } catch (error) {
     res.status(400)
@@ -50,7 +55,7 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
 exports.updateUser = expressAsyncHandler(async (req, res) => {
   try {
     const id = req.params.id
-    let { nom, prenom, email, tel_mob, tel, role, mdp } = req.body
+    let { nom, prenom, email, tel_mob, tel, role, mdp, departement } = req.body
 
     if (!mdp) {
       const [user, _] = await UserModel.updateUserNoPassword(id, {
@@ -60,6 +65,7 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
         tel_mob,
         tel,
         role,
+        departement,
       })
       res.status(200).json(user)
     } else {
@@ -73,6 +79,7 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
         tel,
         role,
         mdp,
+        departement,
       })
       res.status(200).json(user)
     }

@@ -21,6 +21,8 @@ function SingleUtilisateur({ user, changeState }) {
     tel_mob: user.Téléphone_portable,
     tel: user.Téléphone,
     role: user.Role,
+    departement: user.Departement,
+    code_dep: user.Code_dep,
     mdp: "",
   }
   const [formData, setFormData] = useState(initialState)
@@ -32,6 +34,7 @@ function SingleUtilisateur({ user, changeState }) {
     }))
   }
   //UseEffect
+  console.log(formData)
   useEffect(() => {
     //Update user
     const updateUser = async () => {
@@ -116,6 +119,40 @@ function SingleUtilisateur({ user, changeState }) {
         />
       ) : (
         <p>{user.Prénom}</p>
+      )}
+      <span>Département</span>
+      {modifier ? (
+        <select
+          name="departement"
+          value={formData["departement"]}
+          onChange={onChange}
+        >
+          <option value="Département réseaux et témécoms">
+            Département réseaux et témécoms
+          </option>
+          <option value="Département systèmes et services informatiques">
+            Département systèmes et services informatiques
+          </option>
+          <option value="Département support informatique">
+            Département support informatique
+          </option>
+          <option value="Département exploitation">
+            Département exploitation
+          </option>
+          <option value="Département de recrutement">
+            Département de recrutement
+          </option>
+          <option value="Département de formation">
+            Département de formation
+          </option>
+          <option value="Département de supervision de la comptabilité">
+            Département de supervision de la comptabilité
+          </option>
+        </select>
+      ) : (
+        <p style={{ fontWeight: "300", fontSize: "0.8em" }}>
+          {user.Departement}
+        </p>
       )}
       <span>Role</span>
       {modifier ? (

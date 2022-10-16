@@ -6,7 +6,9 @@ function SingleInfoHome({ r }) {
       `En cliquant sur 'OK', vous confirmez que vous avez effectué la requète N°${r.id_requete}`
     )
     if (response) {
+      alert(response)
     } else {
+      alert(response)
     }
   }
   const onClickAnnuler = (e) => {

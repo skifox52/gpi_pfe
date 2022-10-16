@@ -40,7 +40,7 @@ $font--color: #0d585f;
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         span {
           font-size: 0.85em;

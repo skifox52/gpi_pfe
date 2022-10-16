@@ -13,8 +13,18 @@ const genereateToken = (id) => {
 
 exports.registerController = expressAsyncHandler(async (req, res) => {
   try {
-    const { prenom, nom, mdp, email, telephM, teleph, role } = req.body
-    if (!prenom || !nom || !mdp || !email || !telephM || !teleph || !role) {
+    const { prenom, nom, mdp, email, telephM, teleph, role, code_dep } =
+      req.body
+    if (
+      !prenom ||
+      !nom ||
+      !mdp ||
+      !email ||
+      !telephM ||
+      !teleph ||
+      !role ||
+      !code_dep
+    ) {
       throw new Error("Empty fields!")
     }
 
@@ -30,7 +40,8 @@ exports.registerController = expressAsyncHandler(async (req, res) => {
       email,
       telephM,
       teleph,
-      role
+      role,
+      code_dep
     )
     await newUser.save()
     res.status(200).json("User created successfuly")

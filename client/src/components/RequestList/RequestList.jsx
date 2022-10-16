@@ -57,15 +57,15 @@ function RequestList({ forceUpdate }) {
             sortedRequests.map((req) => (
               <div className="single__request" key={req.id_requete + 1}>
                 <div className="container">
-                  <span>Matériel: </span>
+                  <span>Matériel</span>
                   <h3>{req.nom_mat}</h3>
                 </div>
                 <div className="container">
-                  <span>Type de requete: </span>
+                  <span>Type de requete</span>
                   <h3>{req.type_requete}</h3>
                 </div>
                 <div className="container">
-                  <span>Statut requete: </span>
+                  <span>Statut requete</span>
                   <h3
                     style={
                       req.statut === "En attente"

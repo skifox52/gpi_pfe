@@ -3,7 +3,8 @@ const db = require("../config/db")
 class UserModel {
   //Fetch all users
   static fetchAllUsers() {
-    const query = "SELECT * FROM utilisateur"
+    const query =
+      "select id_util, role, email_util, nom_util,prenom_util, mdp_util, teleph_mob_util, teleph_util, designation_departement,utilisateur.code_departement from utilisateur left join departement on utilisateur.code_departement = departement.code_departement;"
     const result = db.execute(query)
     return result
   }
