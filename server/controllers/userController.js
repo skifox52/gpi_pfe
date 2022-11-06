@@ -55,7 +55,7 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
 exports.updateUser = expressAsyncHandler(async (req, res) => {
   try {
     const id = req.params.id
-    let { nom, prenom, email, tel_mob, tel, role, mdp, departement } = req.body
+    let { nom, prenom, email, tel_mob, tel, role, mdp, code_dep } = req.body
 
     if (!mdp) {
       const [user, _] = await UserModel.updateUserNoPassword(id, {
@@ -65,7 +65,7 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
         tel_mob,
         tel,
         role,
-        departement,
+        code_dep,
       })
       res.status(200).json(user)
     } else {
@@ -79,7 +79,7 @@ exports.updateUser = expressAsyncHandler(async (req, res) => {
         tel,
         role,
         mdp,
-        departement,
+        code_dep,
       })
       res.status(200).json(user)
     }

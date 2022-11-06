@@ -1,14 +1,43 @@
 import "./SingleInfoHome.scss"
+import { useSelector } from "react-redux"
+import { toast } from "react-toastify"
+import axios from "axios"
 
 function SingleInfoHome({ r }) {
+  const API_URI_POST = "/pdf"
+  const token = useSelector((state) => state.auth.user?.token)
+  const config = { headers: { Authorization: `Bearer ${token}` } }
+  const user = useSelector((state) => state.auth.user)
+  const { id_requete, type_requete, nom_mat, nom_util, prenom_util } = r
+  //POST PDF
+  const postPdfAccepter = async () => {
+    try {
+      await axios.post(
+        API_URI_POST,
+        {
+          titre: `Requète N°${id_requete}`,
+          id_req: id_requete,
+          type_req: type_requete,
+          materiel: nom_mat,
+          nom_client: nom_util,
+          prenom_client: prenom_util,
+          info_nom: user.nom_util,
+        },
+        config
+      )
+      toast.success("Document créer avec succés!")
+    } catch (error) {
+      toast.error(error)
+    }
+  }
   const onClickAccepter = (e) => {
     const response = window.confirm(
       `En cliquant sur 'OK', vous confirmez que vous avez effectué la requète N°${r.id_requete}`
     )
     if (response) {
-      alert(response)
+      postPdfAccepter()
     } else {
-      alert(response)
+      return
     }
   }
   const onClickAnnuler = (e) => {

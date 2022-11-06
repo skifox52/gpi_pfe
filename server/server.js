@@ -8,6 +8,7 @@ const materielRouter = require("./routes/materielRoute")
 const cors = require("cors")
 const PriseEnChargeRouter = require("./routes/priseEnChargeRouter")
 const accRouter = require("./routes/accRouter")
+const PdfRoute = require("./routes/pdfRoute")
 
 const app = express()
 
@@ -31,6 +32,7 @@ app.use("/request", requestRouter)
 app.use("/materiel", materielRouter)
 app.use("/pec", PriseEnChargeRouter)
 app.use("/acc", accRouter)
+app.use("/pdf", PdfRoute)
 // Home page
 
 app.get("/", (req, res) => {

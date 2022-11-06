@@ -17,7 +17,10 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "pdfkit": "^0.13.0",
+    "svg-to-pdfkit": "^0.1.8",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

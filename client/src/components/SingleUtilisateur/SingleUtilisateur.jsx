@@ -22,7 +22,7 @@ function SingleUtilisateur({ user, changeState }) {
     tel: user.Téléphone,
     role: user.Role,
     departement: user.Departement,
-    code_dep: user.Code_dep,
+    code_dep: parseInt(user.Code_dep),
     mdp: "",
   }
   const [formData, setFormData] = useState(initialState)
@@ -34,7 +34,6 @@ function SingleUtilisateur({ user, changeState }) {
     }))
   }
   //UseEffect
-  console.log(formData)
   useEffect(() => {
     //Update user
     const updateUser = async () => {
@@ -72,6 +71,7 @@ function SingleUtilisateur({ user, changeState }) {
             "Le mot de passe doit contenir au minimum 8 caractères!"
           )
         }
+        console.log(formData)
         await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()
@@ -123,29 +123,20 @@ function SingleUtilisateur({ user, changeState }) {
       <span>Département</span>
       {modifier ? (
         <select
-          name="departement"
-          value={formData["departement"]}
+          name="code_dep"
+          value={formData["code_dep"]}
           onChange={onChange}
         >
-          <option value="Département réseaux et témécoms">
-            Département réseaux et témécoms
-          </option>
-          <option value="Département systèmes et services informatiques">
+          <option value="2">Département réseaux et témécoms</option>
+          <option value="3">Hébargement et Datacenter</option>
+          <option value="4">
             Département systèmes et services informatiques
           </option>
-          <option value="Département support informatique">
-            Département support informatique
-          </option>
-          <option value="Département exploitation">
-            Département exploitation
-          </option>
-          <option value="Département de recrutement">
-            Département de recrutement
-          </option>
-          <option value="Département de formation">
-            Département de formation
-          </option>
-          <option value="Département de supervision de la comptabilité">
+          <option value="5">Département support informatique</option>
+          <option value="6">Département exploitation</option>
+          <option value="7">Département de recrutement</option>
+          <option value="8">Département de formation</option>
+          <option value="9">
             Département de supervision de la comptabilité
           </option>
         </select>

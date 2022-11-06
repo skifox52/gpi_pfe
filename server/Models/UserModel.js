@@ -17,9 +17,12 @@ class UserModel {
     return result
   }
   //Update user
-  static updateUser(id, { nom, prenom, email, tel_mob, tel, role, mdp }) {
+  static updateUser(
+    id,
+    { nom, prenom, email, tel_mob, tel, role, mdp, code_dep }
+  ) {
     const query =
-      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=?, role=?, mdp_util=? WHERE id_util=?"
+      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=?, role=?, mdp_util=?, code_departement=? WHERE id_util=?"
     const result = db.execute(query, [
       nom,
       prenom,
@@ -28,14 +31,18 @@ class UserModel {
       tel,
       role,
       mdp,
+      code_dep,
       id,
     ])
     return result
   }
   //Update user without password
-  static updateUserNoPassword(id, { nom, prenom, email, tel_mob, tel, role }) {
+  static updateUserNoPassword(
+    id,
+    { nom, prenom, email, tel_mob, tel, role, code_dep }
+  ) {
     const query =
-      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=?, role=? WHERE id_util=?"
+      "UPDATE utilisateur SET nom_util=?,prenom_util=?,email_util=?,teleph_mob_util=?,teleph_util=?, role=?, code_departement=? WHERE id_util=?"
     const result = db.execute(query, [
       nom,
       prenom,
@@ -43,6 +50,7 @@ class UserModel {
       tel_mob,
       tel,
       role,
+      code_dep,
       id,
     ])
     return result
