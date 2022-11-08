@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import axios from "axios"
 import "./InfoHome.scss"
 import { useSelector } from "react-redux"
@@ -14,7 +14,22 @@ function InfoHome() {
   const API_URI = `/acc/details/${id}`
   const [req, setReq] = useState([])
   const cancelToken = axios.CancelToken.source()
-
+  const [state, setState] = useState(false)
+  const sortedReq = useMemo(
+    () =>
+      [...req].sort((a, b) => {
+        if (a.statut === "Accepter" || a.statut === "Refuser") {
+          return 1
+        } else {
+          return -1
+        }
+      }),
+    [req]
+  )
+  const changeState = () => {
+    setIsloading(true)
+    setState(!state)
+  }
   useEffect(() => {
     axios
       .get(API_URI, config, { cancelToken: cancelToken.token })
@@ -34,7 +49,7 @@ function InfoHome() {
       cancelToken.cancel()
       setReq([])
     }
-  }, [])
+  }, [state])
   if (isLoading) return <Spinner />
   return (
     <div className="info__home">
@@ -42,7 +57,13 @@ function InfoHome() {
         <h1>Requètes</h1>
         <div className="request__container">
           {req.length > 0
-            ? req.map((r) => <SingleInfoHome r={r} key={r.id_accorder} />)
+            ? sortedReq.map((r) => (
+                <SingleInfoHome
+                  r={r}
+                  key={r.id_accorder}
+                  changeState={changeState}
+                />
+              ))
             : "Aucune requète assignée"}
         </div>
       </div>

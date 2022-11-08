@@ -3,29 +3,58 @@ import { useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import axios from "axios"
 
-function SingleInfoHome({ r }) {
+function SingleInfoHome({ r, changeState }) {
   const API_URI_POST = "/pdf"
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const user = useSelector((state) => state.auth.user)
   const { id_requete, type_requete, nom_mat, nom_util, prenom_util } = r
   //POST PDF
+  //Acceoter
   const postPdfAccepter = async () => {
     try {
       await axios.post(
         API_URI_POST,
         {
           titre: `Requète N°${id_requete}`,
+          etat: "Accepter",
           id_req: id_requete,
           type_req: type_requete,
           materiel: nom_mat,
           nom_client: nom_util,
           prenom_client: prenom_util,
           info_nom: user.nom_util,
+          statut: "Accepter",
         },
         config
       )
-      toast.success("Document créer avec succés!")
+      changeState()
+      toast.success("Requète résolu!")
+    } catch (error) {
+      toast.error(error)
+    }
+  }
+  //Refuser
+  const postPdfRefuser = async (message) => {
+    try {
+      await axios.post(
+        API_URI_POST,
+        {
+          titre: `Requète N°${id_requete}`,
+          etat: "Refuser",
+          id_req: id_requete,
+          type_req: type_requete,
+          materiel: nom_mat,
+          nom_client: nom_util,
+          prenom_client: prenom_util,
+          info_nom: user.nom_util,
+          statut: "Refuser",
+          commentaire: message,
+        },
+        config
+      )
+      changeState()
+      toast.success("Requète résolu!")
     } catch (error) {
       toast.error(error)
     }
@@ -45,7 +74,11 @@ function SingleInfoHome({ r }) {
     do {
       message = prompt("Raison du refus?")
     } while (message !== null && message === "")
+    if (message) {
+      postPdfRefuser(message)
+    }
   }
+
   return (
     <div className="single__request" key={r.id_accorder}>
       <div className="first__item">
@@ -86,18 +119,22 @@ function SingleInfoHome({ r }) {
         <span>Statut requète</span>
         <h4>{r.statut}</h4>
       </div>
-      <div className="button__container">
-        <button onClick={onClickAccepter}>
-          Requête
-          <br />
-          accomplie
-        </button>
-        <button onClick={onClickAnnuler} className="annuler">
-          Requête
-          <br />
-          refusée
-        </button>
-      </div>
+      {r.statut === "Accepter" || r.statut === "Refuser" ? (
+        <p className="resolved">{`Requète résolu`}</p>
+      ) : (
+        <div className="button__container">
+          <button onClick={onClickAccepter}>
+            Requête
+            <br />
+            accomplie
+          </button>
+          <button onClick={onClickAnnuler} className="annuler">
+            Requête
+            <br />
+            refusée
+          </button>
+        </div>
+      )}
     </div>
   )
 }

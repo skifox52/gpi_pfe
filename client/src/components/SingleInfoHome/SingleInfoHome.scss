@@ -3,7 +3,8 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.4);
 
 .single__request {
-  border: 1px solid $font--clr--secondary;
+  border: 1px solid rgba(240, 240, 240, 0.15);
+  box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.8);
   border-radius: 5px;
   width: 100%;
   display: flex;
@@ -42,6 +43,13 @@ $font--clr--secondary: rgba(240, 240, 240, 0.4);
     h4 {
       font-weight: 400;
     }
+  }
+  .resolved {
+    background: hsl(201, 45%, 3.5%);
+    border-radius: 1em;
+    border: 1px solid rgba(240, 240, 240, 0.12);
+    color: orange;
+    padding: 1em;
   }
   .button__container {
     @extend .item;

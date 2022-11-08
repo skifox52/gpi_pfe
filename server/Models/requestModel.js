@@ -51,6 +51,13 @@ class RequestModel {
     const result = db.execute(query)
     return result
   }
+
+  //PUT Request
+  static putRequest(statut, id_req) {
+    const query = "UPDATE requete SET statut=? WHERE id_requete=?"
+    const result = db.execute(query, [statut, id_req])
+    return result
+  }
 }
 
 module.exports = RequestModel
