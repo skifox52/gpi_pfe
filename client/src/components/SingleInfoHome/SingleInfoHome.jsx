@@ -32,6 +32,7 @@ function SingleInfoHome({ r, changeState }) {
       await axios.post(
         API_URI_DOCUMENT,
         {
+          id_req: id_requete,
           categ_doc: "Accepter",
           commentaire_doc: "Pas de commentaire",
           piece_jointe_doc: `Document-${response.data}.pdf`,
@@ -66,6 +67,7 @@ function SingleInfoHome({ r, changeState }) {
       await axios.post(
         API_URI_DOCUMENT,
         {
+          id_req: id_requete,
           categ_doc: "Refuser",
           commentaire_doc: message,
           piece_jointe_doc: `Document-${response.data}.pdf`,
