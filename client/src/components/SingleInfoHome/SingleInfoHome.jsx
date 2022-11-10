@@ -5,6 +5,7 @@ import axios from "axios"
 
 function SingleInfoHome({ r, changeState }) {
   const API_URI_POST = "/pdf"
+  const API_URI_DOCUMENT = "/document"
   const token = useSelector((state) => state.auth.user?.token)
   const config = { headers: { Authorization: `Bearer ${token}` } }
   const user = useSelector((state) => state.auth.user)
@@ -13,7 +14,7 @@ function SingleInfoHome({ r, changeState }) {
   //Acceoter
   const postPdfAccepter = async () => {
     try {
-      await axios.post(
+      const response = await axios.post(
         API_URI_POST,
         {
           titre: `Requète N°${id_requete}`,
@@ -28,7 +29,16 @@ function SingleInfoHome({ r, changeState }) {
         },
         config
       )
-      changeState()
+      await axios.post(
+        API_URI_DOCUMENT,
+        {
+          categ_doc: "Accepter",
+          commentaire_doc: "Pas de commentaire",
+          piece_jointe_doc: `Document-${response.data}.pdf`,
+        },
+        config
+      )
+      await changeState()
       toast.success("Requète résolu!")
     } catch (error) {
       toast.error(error)
@@ -37,7 +47,7 @@ function SingleInfoHome({ r, changeState }) {
   //Refuser
   const postPdfRefuser = async (message) => {
     try {
-      await axios.post(
+      const response = await axios.post(
         API_URI_POST,
         {
           titre: `Requète N°${id_requete}`,
@@ -50,6 +60,15 @@ function SingleInfoHome({ r, changeState }) {
           info_nom: user.nom_util,
           statut: "Refuser",
           commentaire: message,
+        },
+        config
+      )
+      await axios.post(
+        API_URI_DOCUMENT,
+        {
+          categ_doc: "Refuser",
+          commentaire_doc: message,
+          piece_jointe_doc: `Document-${response.data}.pdf`,
         },
         config
       )
@@ -124,14 +143,14 @@ function SingleInfoHome({ r, changeState }) {
       ) : (
         <div className="button__container">
           <button onClick={onClickAccepter}>
-            Requête
+            Accepter
             <br />
-            accomplie
+            Requête
           </button>
           <button onClick={onClickAnnuler} className="annuler">
-            Requête
+            Refuser
             <br />
-            refusée
+            Requête
           </button>
         </div>
       )}

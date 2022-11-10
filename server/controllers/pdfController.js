@@ -34,12 +34,13 @@ exports.postPdf = expressAsyncHandler(async (req, res) => {
       res.status(400)
       throw new Error("Empty fields!")
     }
+    const PDFRandom = v4()
     await RequestModel.putRequest(statut, id_req)
     const FoldPath = path.resolve(
       __dirname,
       "../assets",
       "pdfs",
-      `Document-${v4()}.pdf`
+      `Document-${PDFRandom}.pdf`
     )
     const PdfDoc = new PDFKit()
     const svg = `<svg width="80" height="80" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +81,7 @@ exports.postPdf = expressAsyncHandler(async (req, res) => {
           450
         )
     PdfDoc.end()
-    res.status(200).json("PDF created successfully!")
+    res.status(200).json(PDFRandom)
   } catch (error) {
     res.status(400)
     throw new Error(error)
