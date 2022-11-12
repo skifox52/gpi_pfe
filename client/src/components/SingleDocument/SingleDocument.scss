@@ -3,8 +3,32 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.1);
 
 .document {
-  padding: 0.5em;
+  position: relative;
+  padding: 1em 0.5em;
+  color: $font--clr--primary;
+  text-decoration: none;
   background-color: $primary--clr;
   border-radius: 0.4em;
   border: 1px solid $font--clr--secondary;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 100ms ease-in;
+  gap: 0.5em;
+  span {
+    position: absolute;
+    opacity: 0.5;
+    font-size: 0.8em;
+    font-weight: 300;
+    right: 0.8em;
+    top: 0.8em;
+    &:last-of-type {
+      top: 2em;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transform: translateY(1px);
+  }
 }

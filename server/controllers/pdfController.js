@@ -38,8 +38,9 @@ exports.postPdf = expressAsyncHandler(async (req, res) => {
     await RequestModel.putRequest(statut, id_req)
     const FoldPath = path.resolve(
       __dirname,
-      "../assets",
-      "pdfs",
+      // "../assets",
+      "../../client/src/assets",
+      "pdf",
       `Document-${PDFRandom}.pdf`
     )
     const PdfDoc = new PDFKit()

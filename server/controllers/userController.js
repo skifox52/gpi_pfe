@@ -44,6 +44,7 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
       Role: user[0].role,
       Code_dep: user[0].code_departement,
       Departement: user[0].departement,
+      Direction: user[0].direction,
     })
   } catch (error) {
     res.status(400)

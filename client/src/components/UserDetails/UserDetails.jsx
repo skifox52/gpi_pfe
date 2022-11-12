@@ -8,6 +8,7 @@ import { toast } from "react-toastify"
 function UserDetails() {
   const API_URI = "/users"
   const [user, setUser] = useState()
+  console.log(user)
   const id = useSelector((state) => state.auth.user?.userId)
   const token = useSelector((state) => state.auth.user?.token)
   useEffect(() => {
