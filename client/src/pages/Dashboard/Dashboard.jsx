@@ -14,9 +14,6 @@ function Dashboard() {
 
   //UseEffect
   useEffect(() => {
-    // if (user == null) {
-    //   navigate("/login")
-    // }
     if (isError) {
       toast.error(message)
     }

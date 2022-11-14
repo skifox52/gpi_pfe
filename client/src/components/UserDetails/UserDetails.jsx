@@ -8,7 +8,6 @@ import { toast } from "react-toastify"
 function UserDetails() {
   const API_URI = "/users"
   const [user, setUser] = useState()
-  console.log(user)
   const id = useSelector((state) => state.auth.user?.userId)
   const token = useSelector((state) => state.auth.user?.token)
   useEffect(() => {
@@ -43,6 +42,10 @@ function UserDetails() {
         <p>{user ? user.Prenom : "null"}</p>
         <span>E-mail : </span>
         <p>{user ? user.Email : "null"}</p>
+        <span>Département : </span>
+        <p>{user ? user.Departement : "null"}</p>
+        <span>Direction : </span>
+        <p>{user ? user.Direction : "null"}</p>
         <span>Numéro portable : </span>
         <p>{user ? `0${user.TelephM}` : "null"}</p>
         <span>Numéro fix : </span>

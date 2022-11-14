@@ -42,7 +42,6 @@ exports.fetchUser = expressAsyncHandler(async (req, res) => {
       TelephM: user[0].teleph_mob_util,
       Teleph: user[0].teleph_util,
       Role: user[0].role,
-      Code_dep: user[0].code_departement,
       Departement: user[0].departement,
       Direction: user[0].direction,
     })

@@ -10,6 +10,7 @@ const PriseEnChargeRouter = require("./routes/priseEnChargeRouter")
 const accRouter = require("./routes/accRouter")
 const PdfRoute = require("./routes/pdfRoute")
 const DocumentRouter = require("./routes/documentRouter")
+const DashboardRouter = require("./routes/dashboardRouter")
 
 const app = express()
 
@@ -35,6 +36,7 @@ app.use("/pec", PriseEnChargeRouter)
 app.use("/acc", accRouter)
 app.use("/pdf", PdfRoute)
 app.use("/document", DocumentRouter)
+app.use("/dashboard", DashboardRouter)
 // Home page
 
 app.get("/", (req, res) => {

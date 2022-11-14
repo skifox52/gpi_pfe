@@ -10,15 +10,23 @@ function SingleDocument({ doc }) {
     })
   }, [])
   return (
-    <a className="document" href={pdfUrl} target="_blank" rel="noreferrer">
-      <h4>Id document: {doc.id_doc}</h4>
-      <p>Id requète: {doc.id_req}</p>
-      <p>Statut requète: {doc.categ_doc}</p>
-      <span>{doc.createdAt.toString().split("T")[0]}</span>
-      <span>
-        {doc.createdAt.toString().split("T")[1].split("").splice(0, 5)}
-      </span>
-    </a>
+    <div className="document">
+      <h4>
+        Id document: <p>{doc.id_doc}</p>
+      </h4>
+      <h4>
+        Id requète: <p>{doc.id_req}</p>
+      </h4>
+      <h4>
+        Statut requète: <p>{doc.categ_doc}</p>
+      </h4>
+      <h4>
+        Date: <p>{doc.createdAt.toString().split("T")[0]}</p>
+      </h4>
+      <a href={pdfUrl} target="_blank" rel="noreferrer">
+        Afficher le document
+      </a>
+    </div>
   )
 }
 

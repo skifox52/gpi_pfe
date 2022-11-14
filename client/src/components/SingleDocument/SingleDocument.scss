@@ -3,8 +3,7 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.1);
 
 .document {
-  position: relative;
-  padding: 1em 0.5em;
+  padding: 1em;
   color: $font--clr--primary;
   text-decoration: none;
   background-color: $primary--clr;
@@ -14,21 +13,46 @@ $font--clr--secondary: rgba(240, 240, 240, 0.1);
   flex-direction: column;
   justify-content: space-between;
   transition: transform 100ms ease-in;
-  gap: 0.5em;
-  span {
-    position: absolute;
-    opacity: 0.5;
-    font-size: 0.8em;
+  h4 {
     font-weight: 300;
-    right: 0.8em;
-    top: 0.8em;
-    &:last-of-type {
-      top: 2em;
+    gap: 1em;
+    letter-spacing: 1px;
+    display: flex;
+    margin-block: 0.5em;
+    justify-content: space-between;
+  }
+  p {
+    font-weight: 500;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0.8em 0.5em;
+    background: hsl(201, 45%, 1.5%);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid $font--clr--secondary;
+    box-shadow: 1px 1px 1px 1px black;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.85;
+      transform: translateY(1px);
     }
   }
-  &:hover {
-    cursor: pointer;
-    opacity: 0.7;
-    transform: translateY(1px);
+}
+
+@media (max-width: 1600px) {
+  .document {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 850px) {
+  .document {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 700px) {
+  .document {
+    font-size: 0.6rem;
   }
 }

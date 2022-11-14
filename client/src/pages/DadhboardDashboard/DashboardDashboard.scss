@@ -3,4 +3,20 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.2);
 
 .dashboard__dashboard {
+  color: $font--clr--primary;
+  padding: 1em;
+  height: 100%;
+  .chart__container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .chart__user__container,
+    .chart__requete__container {
+      padding: 2em;
+      border: 1px solid $font--clr--secondary;
+      background: $primary--clr;
+      border-radius: 5em;
+    }
+  }
 }

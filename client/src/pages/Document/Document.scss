@@ -4,3 +4,24 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 1em;
 }
+
+@media (max-width: 1400px) {
+  .document__container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1150px) {
+  .document__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 630px) {
+  .document__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 450px) {
+  .document__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
