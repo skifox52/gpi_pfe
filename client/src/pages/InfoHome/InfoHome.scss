@@ -1,6 +1,6 @@
 $primary--clr: hsl(201, 45%, 6.5%);
 $font--clr--primary: rgba(240, 240, 240, 0.9);
-$font--clr--secondary: rgba(240, 240, 240, 0.4);
+$font--clr--secondary: rgba(240, 240, 240, 0.2);
 
 .info__home {
   padding-top: 2.5em;
@@ -14,9 +14,17 @@ $font--clr--secondary: rgba(240, 240, 240, 0.4);
     align-items: center;
     gap: 2em;
     h1 {
+      background: $primary--clr;
+      padding: 0.15em 1em;
+      border-radius: 10px;
+      width: 100%;
+      border: 1px solid $font--clr--secondary;
       font-weight: 300;
-      letter-spacing: 2px;
+      letter-spacing: 5px;
+      text-align: center;
+      box-shadow: 0px 0px 10px 5px $primary--clr;
     }
+
     .request__container {
       width: 100%;
       display: flex;

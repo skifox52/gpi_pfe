@@ -1,22 +1,47 @@
 $primary--clr: hsl(201, 45%, 6.5%);
 $font--clr--primary: rgba(240, 240, 240, 0.9);
-$font--clr--secondary: rgba(240, 240, 240, 0.2);
+$font--clr--secondary: rgba(240, 240, 240, 0.1);
 
 .dashboard__dashboard {
+  h1 {
+    background: $primary--clr;
+    padding: 0.15em 1em;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid $font--clr--secondary;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 5px $primary--clr;
+  }
   color: $font--clr--primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 1em;
   height: 100%;
-  .chart__container {
-    height: 100%;
+  .cards__container {
+    width: 100%;
+    padding: 2em 0em;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+  }
+  .chart__container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1em 2em;
+    justify-content: space-evenly;
     .chart__user__container,
     .chart__requete__container {
-      padding: 2em;
+      padding: 2em 4em;
       border: 1px solid $font--clr--secondary;
       background: $primary--clr;
       border-radius: 5em;
+      box-shadow: 0px 0px 10px 5px $primary--clr;
     }
   }
 }

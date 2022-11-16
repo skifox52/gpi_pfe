@@ -1,0 +1,46 @@
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.1);
+
+.dashboard__card {
+  display: block;
+  box-shadow: 0px 0px 10px 5px $primary--clr;
+  border: 1px solid $font--clr--secondary;
+  background: $primary--clr;
+  padding: 1em 2em;
+  height: 30ch;
+  width: 40ch;
+  border-radius: 10px;
+  .card__title {
+    width: 100%;
+    text-align: center;
+    h2 {
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+  .payload__container {
+    padding: 1em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    div {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        color: rgba(240, 240, 240, 0.4);
+        font-weight: 300;
+        letter-spacing: 2px;
+        font-size: 1.1em;
+      }
+      p {
+        font-size: 1.3em;
+        font-weight: 400;
+      }
+    }
+  }
+}

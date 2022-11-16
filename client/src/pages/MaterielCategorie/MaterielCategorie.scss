@@ -1,6 +1,9 @@
 $secondary--color: #c2f9ff;
 $primary--color: #0e323c;
 $font--color: #0d585f;
+$primary--clr: hsl(201, 45%, 6.5%);
+$font--clr--primary: rgba(240, 240, 240, 0.9);
+$font--clr--secondary: rgba(240, 240, 240, 0.1);
 
 .spinner {
   position: fixed;
@@ -10,6 +13,7 @@ $font--color: #0d585f;
 }
 
 .categorie__materiel {
+  padding: 1em;
   color: $secondary--color;
   display: flex;
   align-items: center;
@@ -19,9 +23,15 @@ $font--color: #0d585f;
   width: 100%;
   gap: 2em;
   h1 {
-    padding-top: 1.5em;
+    background: $primary--clr;
+    padding: 0.15em 1em;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid $font--clr--secondary;
     font-weight: 300;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 5px $primary--clr;
   }
   .categorie__container {
     display: flex;

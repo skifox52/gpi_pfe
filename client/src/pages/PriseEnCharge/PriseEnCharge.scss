@@ -3,15 +3,25 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.1);
 
 .prise__en__charge {
+  .h1 {
+    background: $primary--clr;
+    padding: 0.15em 1em;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid $font--clr--secondary;
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 5px $primary--clr;
+  }
   padding: 1em;
   display: flex;
   flex-direction: column;
   color: $font--clr--primary;
   gap: 2em;
-  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  height: 100%;
   .req__container,
   .info__container {
     background: $primary--clr;

@@ -48,6 +48,9 @@ function SingleUtilisateur({ user, changeState }) {
         ) {
           return toast.warn("Adress mail non valide")
         }
+        if (formData["tel_mob"].length < 10) {
+          return toast.warn("Vérifier le numéro du téléphone portable")
+        }
         if (
           formData["nom"] === "" ||
           formData["prenom"] === "" ||
@@ -71,7 +74,6 @@ function SingleUtilisateur({ user, changeState }) {
             "Le mot de passe doit contenir au minimum 8 caractères!"
           )
         }
-        console.log(formData)
         await axios.put(`${API_URI_UPDATE}/${user.Id}`, formData, config)
         setModifier(false)
         changeState()

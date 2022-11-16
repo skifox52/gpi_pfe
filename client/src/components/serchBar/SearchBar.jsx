@@ -45,7 +45,19 @@ function SearchBar({ users, changeState, searchInput }) {
     if (mdp.length < 8) {
       return toast.warning("Mot de passe trop court!")
     }
-
+    if (formData["telephM"].length < 10) {
+      return toast.warn("Vérifier le numéro du téléphone portable")
+    }
+    if (
+      !formData["email"]
+        .toString()
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      return toast.warn("Adress mail non valide")
+    }
     try {
       await axios.post(API_URI_REGISTER, formData, config)
       toast.success("Utilisatueur créer avec succée!")
@@ -121,8 +133,35 @@ function SearchBar({ users, changeState, searchInput }) {
                 </option>
                 <option value="admin">Administrateur</option>
                 <option value="utilisateur">Utilisateur</option>
+                <option value="informaticien">Informaticien</option>
               </select>
             </div>
+
+            <div className="form__control">
+              <select
+                name="code_dep"
+                onChange={onChange}
+                defaultValue=""
+                required
+              >
+                <option hidden disabled value="">
+                  Département
+                </option>
+                <option value="2">Département réseaux et témécoms</option>
+                <option value="3">Hébargement et Datacenter</option>
+                <option value="4">
+                  Département systèmes et services informatiques
+                </option>
+                <option value="5">Département support informatique</option>
+                <option value="6">Département exploitation</option>
+                <option value="7">Département de recrutement</option>
+                <option value="8">Département de formation</option>
+                <option value="9">
+                  Département de supervision de la comptabilité
+                </option>
+              </select>
+            </div>
+
             <div className="form__control">
               <input
                 type="email"

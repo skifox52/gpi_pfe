@@ -32,12 +32,15 @@ function Document() {
   }, [])
   if (isLoading) return <DashboardSpinner />
   return (
-    <div className="document__container">
-      {document.length === 0 ? (
-        <h1>Aucun document enregistré!</h1>
-      ) : (
-        document.map((doc) => <SingleDocument key={doc.id_doc} doc={doc} />)
-      )}
+    <div className="container">
+      <h1>Documents</h1>
+      <div className="document__container">
+        {document.length === 0 ? (
+          <h1>Aucun document enregistré!</h1>
+        ) : (
+          document.map((doc) => <SingleDocument key={doc.id_doc} doc={doc} />)
+        )}
+      </div>
     </div>
   )
 }

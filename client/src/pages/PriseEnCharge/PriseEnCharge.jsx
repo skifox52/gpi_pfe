@@ -86,6 +86,7 @@ function PriseEnCharge() {
   if (isLoading) return <DashboardSpinner />
   return (
     <div className="prise__en__charge">
+      <h1 className="h1">Prise en charge</h1>
       <div className="req__container">
         <h1>Requète en attente</h1>
         <select name="request" defaultValue="" onChange={onChange}>
