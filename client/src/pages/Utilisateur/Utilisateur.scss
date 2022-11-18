@@ -1,7 +1,8 @@
 .utilisateurs {
+  font-size: 0.85rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5em;
   padding: 1em;
   max-width: 100%;
 }

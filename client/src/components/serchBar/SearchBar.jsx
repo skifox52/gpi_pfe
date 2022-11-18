@@ -147,7 +147,7 @@ function SearchBar({ users, changeState, searchInput }) {
                 <option hidden disabled value="">
                   Département
                 </option>
-                <option value="2">Département réseaux et témécoms</option>
+                <option value="2">Département réseaux et témlécoms</option>
                 <option value="3">Hébargement et Datacenter</option>
                 <option value="4">
                   Département systèmes et services informatiques

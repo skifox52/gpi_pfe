@@ -6,8 +6,33 @@ $background__primary: #0e1d25;
   height: 100vh;
   width: 100vw;
   display: flex;
-  gap: 1em;
-  padding: 3.5em 1em 1em 1em;
+  gap: 1rem;
+  padding: 3.5rem 1rem 1rem 1rem;
   color: $font__clr;
   overflow-y: auto;
+}
+
+@media (max-width: 1400px) {
+  .user-home {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 995px) {
+  .user-home {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .user-home {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 450px) {
+  .user-home {
+    font-size: 0.45rem;
+  }
 }

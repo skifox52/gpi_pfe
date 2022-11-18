@@ -3,7 +3,7 @@ $font--clr--primary: rgba(240, 240, 240, 0.9);
 $font--clr--secondary: rgba(240, 240, 240, 0.2);
 
 .info__home {
-  padding-top: 2.5em;
+  padding-top: 2.5rem;
   background: #0e1d25;
   height: 100vh;
   color: $font--clr--primary;
@@ -31,5 +31,20 @@ $font--clr--secondary: rgba(240, 240, 240, 0.2);
       flex-direction: column;
       gap: 0.5em;
     }
+  }
+}
+@media (max-width: 1300px) {
+  .info__home {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 1150px) {
+  .info__home {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 920px) {
+  .info__home {
+    font-size: 0.65rem;
   }
 }
